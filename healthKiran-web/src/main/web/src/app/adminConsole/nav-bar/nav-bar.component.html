@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <div class="mat-drawer-inner-container">
+    <mat-nav-list>
+      <mat-toolbar _ngcontent-c1="" class="mat-toolbar ">
+        <mat-toolbar-row _ngcontent-c1="" class="mat-toolbar-row">
+          <h2 _ngcontent-c1="" class="toolbar-title"><mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon> Health Kiran </h2>
+        </mat-toolbar-row></mat-toolbar>
+      <a mat-list-item routerLink="/cities" routerLinkActive="active">Cities</a>
+      <a mat-list-item routerLink="/labTests" routerLinkActive="active">Lab Tests</a>
+      <a mat-list-item routerLink="/labs" routerLinkActive="active">Labs</a>
+      <a mat-list-item routerLink="/registeredUsers" routerLinkActive="active">Registered Users</a>
+      <a mat-list-item routerLink="/scheduledTests" routerLinkActive="active">Scheduled Tests</a>
+      <a mat-list-item routerLink="/email" routerLinkActive="active">Manage Email</a>
+      <a mat-list-item routerLink="/sms" routerLinkActive="active">SMS</a>
+      <a mat-list-item routerLink="/contacts" routerLinkActive="active">Contacts</a>
+    </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>web</span>
+      <span class="example-spacer"></span>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+    </mat-toolbar>
+    <div class="spacing"><router-outlet></router-outlet></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

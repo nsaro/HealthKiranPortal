@@ -1,0 +1,33 @@
+  <div class="example-container">
+    <form [formGroup]="formData">
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Email" formCxontrolName="email">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Phone" formControlName="phone">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Include area code</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Password" formControlName="password">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+      <br>
+      <div class="example-button-row">
+        <button mat-raised-button (click)="onClickSubmit(formData.value)" color="primary">Save Contact</button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Health Kiran
+  description: 'Health Kiran'
+
+servers:
+  - url: http://localhost:8080/api
+    description: Dev Server
+tags:
+  - name: user
+    description: User Management
+
+paths:
+  /addUser:
+    post:
+      tags:
+        - user
+      description: Add User
+      operationId: adduser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/user.yaml#/definitions/User'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/user.yaml#/definitions/User'
+        404:
+          description: Page not found
