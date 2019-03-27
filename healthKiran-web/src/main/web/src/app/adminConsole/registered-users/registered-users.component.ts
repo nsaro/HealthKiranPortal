@@ -32,8 +32,8 @@ export class RegisteredUsersComponent implements OnInit {
 
     this.userService.adduser(this.user).toPromise()
       .then(
-        ProjectNode => {
-          console.log(ProjectNode)
+        User => {
+          console.log(User)
         },
         (e: HttpErrorResponse) => {
           console.log('HttpErrorResponse :: ' + e.message);

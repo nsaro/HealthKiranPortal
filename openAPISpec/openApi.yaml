@@ -10,6 +10,8 @@ servers:
 tags:
   - name: user
     description: User Management
+  - name: city
+    description: City Management
 
 paths:
   /addUser:
@@ -23,13 +25,93 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'models/user.yaml#/definitions/User'
+              $ref: 'models/models.yaml#/definitions/User'
       responses:
         200:
           description: successfully added
           content:
             'application/json':
               schema:
-                $ref: 'models/user.yaml#/definitions/User'
+                $ref: 'models/models.yaml#/definitions/User'
+        404:
+          description: Page not found
+  /addCity:
+    post:
+      tags:
+        - city
+      description: Add City
+      operationId: addCity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/City'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/City'
+        404:
+          description: Page not found
+  /deleteCity/{id}:
+    post:
+      tags:
+        - city
+      description: Delete City
+      operationId: deleteCityById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: CityId
+      responses:
+        200:
+          description: successfully deleted
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/City'
+        404:
+          description: Page not found
+  /city/{id}:
+    get:
+      tags:
+        - city
+      description: Load city
+      operationId: getCityById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: CityId
+      responses:
+        200:
+          description: successfully received
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/City'
+        404:
+          description: Page not found
+  /cities/:
+    get:
+      tags:
+        - city
+      description: Load cities
+      operationId: getAllCities
+      responses:
+        200:
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/ArrayOfCities'
         404:
           description: Page not found

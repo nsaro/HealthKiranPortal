@@ -12,7 +12,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NavBarComponent } from './adminConsole/nav-bar/nav-bar.component';
-import { MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
+import {MatButtonModule, MatSidenavModule, MatListModule, MatCheckboxModule} from '@angular/material';
 import { CitiesComponent } from './adminConsole/cities/cities.component';
 import { LabtestComponent } from './adminConsole/labtest/labtest.component';
 import { LabsComponent } from './adminConsole/labs/labs.component';
@@ -23,6 +23,7 @@ import { RegisteredUsersComponent } from './adminConsole/registered-users/regist
 import { ContactsComponent } from './adminConsole/contacts/contacts.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatTableModule} from '@angular/material/table';
 
 
 export function restClientConfigurationFactory() {
@@ -59,7 +60,9 @@ export function restClientConfigurationFactory() {
     MatListModule,
     MatFormFieldModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

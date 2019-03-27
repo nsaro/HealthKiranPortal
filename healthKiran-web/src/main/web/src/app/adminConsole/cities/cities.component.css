@@ -1,0 +1,15 @@
+.form-container{
+    padding: 30px;
+}
+.matCard {
+    width: 90%;
+    height: auto;
+    box-sizing: border-box;
+}
+.header-image {
+    background-image: url('../../../images/user.png');
+    background-size: cover;
+}
+table {
+    width: 90%;
+}
