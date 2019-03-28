@@ -1,11 +1,4 @@
-.form-container{
-    padding: 30px;
-}
-.matCard {
-    width: 90%;
-    height: auto;
-    box-sizing: border-box;
-}
+
 .header-image {
     background-image: url('../../../images/user.png');
     background-size: cover;
@@ -13,3 +6,17 @@
 table {
     width: 90%;
 }
+.addButton{
+    padding-bottom: 20px;
+}
+.example-icon {
+    padding: 0 14px;
+}
+mat-form-field.mat-form-field {
+    font-size: 14px;
+}
+
+.mat-dialog-content{
+    padding-top: 20px;
+}
+

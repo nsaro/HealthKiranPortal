@@ -8,6 +8,7 @@ package com.health.kiran.controllers;
 import com.health.kiran.model.City;
 import com.health.kiran.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,17 @@ public class CityController {
 	@GetMapping("/cities")
 	public List<City> getAllCities(){
 		return cityRepository.findAll();
+	}
+
+	@PostMapping("/deleteCity/{id}")
+	public ResponseEntity<Void> deleteCityById(@PathVariable("id") long id) {
+		cityRepository.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@PostMapping("/updateCity")
+	public ResponseEntity<City> updateCity(@RequestBody City city) {
+		City updatedCity = cityRepository.save(city);
+		return ResponseEntity.ok(updatedCity);
 	}
 }

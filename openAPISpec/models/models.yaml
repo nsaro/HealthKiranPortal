@@ -64,3 +64,6 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/City'
+
+  DeleteResult:
+    type: string

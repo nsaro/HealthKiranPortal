@@ -12,8 +12,14 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { NavBarComponent } from './adminConsole/nav-bar/nav-bar.component';
-import {MatButtonModule, MatSidenavModule, MatListModule, MatCheckboxModule} from '@angular/material';
-import { CitiesComponent } from './adminConsole/cities/cities.component';
+import {
+  MatButtonModule,
+  MatSidenavModule,
+  MatListModule,
+  MatCheckboxModule,
+  MAT_DIALOG_DEFAULT_OPTIONS
+} from '@angular/material';
+import {AddCityDialog, CitiesComponent} from './adminConsole/cities/cities.component';
 import { LabtestComponent } from './adminConsole/labtest/labtest.component';
 import { LabsComponent } from './adminConsole/labs/labs.component';
 import { EmailComponent } from './adminConsole/email/email.component';
@@ -24,7 +30,7 @@ import { ContactsComponent } from './adminConsole/contacts/contacts.component';
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -41,7 +47,8 @@ export function restClientConfigurationFactory() {
     ScheduleTestsComponent,
     SmsComponent,
     RegisteredUsersComponent,
-    ContactsComponent
+    ContactsComponent,
+    AddCityDialog
   ],
   imports: [
     HttpClientModule,
@@ -62,9 +69,13 @@ export function restClientConfigurationFactory() {
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
-  providers: [],
+  entryComponents: [
+    AddCityDialog
+  ],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

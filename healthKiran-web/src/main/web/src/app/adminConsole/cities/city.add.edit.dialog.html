@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>{{headerText}} City</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content>
+    <mat-card-header>
+        <mat-card-subtitle>{{headerText}} city to the application </mat-card-subtitle>
+    </mat-card-header>
+    <div class="form-container">
+            <mat-dialog-content [formGroup]="formData">
+                <input type="hidden" formControlName="id" value="{{data.id}}">
+            <mat-form-field>
+                <input matInput placeholder="City Name" formControlName="name" value="{{data.name}}">
+            </mat-form-field>
+            </mat-dialog-content>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button (click)="onClickSubmit(formData.value)" color="primary"
+            [mat-dialog-close]="data.name" cdkFocusInitial>{{headerText}} City</button>
+</div>
+

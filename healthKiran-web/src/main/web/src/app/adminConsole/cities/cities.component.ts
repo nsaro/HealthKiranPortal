@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
 import {City, CityService} from "../../../generated/restClient";
 import {FormControl, FormGroup} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatTableDataSource} from "@angular/material";
-import {SelectionModel} from "@angular/cdk/collections";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {CityGenericService} from "./CityGenericService";
 
 @Component({
     selector: 'app-cities',
@@ -12,36 +13,32 @@ import {SelectionModel} from "@angular/cdk/collections";
 })
 export class CitiesComponent implements OnInit {
 
-    city: City;
-    formData;
-    selection = new SelectionModel<City>(true, []);
     cities: City[] = [{id: 0, name: ""}];
-    displayedColumns: string[] = ['id', 'name', 'select'];
+    displayedColumns: string[] = ['index', 'name', 'edit', 'delete'];
     dataSource = new MatTableDataSource<City>(this.cities);
-    constructor(private cityService: CityService) {
+
+    constructor(private cityService: CityService, public dialog: MatDialog, public cityGenericService: CityGenericService) {
         this.cityService = cityService;
+        cityGenericService.updateCitiesTable.subscribe(() => {
+            this.getAllCities();
+        });
     }
 
     ngOnInit() {
-        this.formData = new FormGroup({
-            name: new FormControl(),
-        });
         this.getAllCities();
+
     }
 
-    onClickSubmit(data) {
-        console.log(data);
-        this.city = {id: null, name: data.name};
+    openDialog(id:string, name: string): void {
+        const dialogRef = this.dialog.open(AddCityDialog, {
+            width: '350px',
+            data: {id: id, name: name},
+            hasBackdrop: true
+        });
 
-        this.cityService.addCity(this.city).toPromise()
-            .then(
-                City => {
-                    console.log(City);
-                },
-                (e: HttpErrorResponse) => {
-                    console.log('HttpErrorResponse :: ' + e.message);
-                }
-            );
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed : '+ result);
+        });
     }
 
     private getAllCities() {
@@ -60,26 +57,67 @@ export class CitiesComponent implements OnInit {
 
     }
 
-    /** Whether the number of selected elements matches the total number of rows. */
-    isAllSelected() {
-        const numSelected = this.selection.selected.length;
-        const numRows = this.dataSource.data.length;
-        return numSelected === numRows;
+    edit(row?: City) {
+        this.openDialog(row.id.toString(), row.name);
     }
-
-    /** Selects all rows if they are not all selected; otherwise clear selection. */
-    masterToggle() {
-        this.isAllSelected() ?
-            this.selection.clear() :
-            this.dataSource.data.forEach(row => this.selection.select(row));
+    delete(row?: City) {
+        this.cityService.deleteCityById(row.id.toString()).toPromise()
+            .then(
+                result => {
+                    console.log(result);
+                    CityGenericService.instance.updateTable();
+                },
+                (e: HttpErrorResponse) => {
+                    console.log('HttpErrorResponse :: ' + e.message);
+                }
+            );
     }
+}
 
-    /** The label for the checkbox on the passed row */
-    checkboxLabel(row?: City): string {
-        if (!row) {
-            return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+@Component({
+    selector: 'add-edit-city-dialog',
+    templateUrl: 'city.add.edit.dialog.html',
+    styleUrls: ['./cities.component.css']
+})
+export class AddCityDialog implements OnInit{
+
+    city: City;
+    formData;
+    headerText: string = 'Add';
+
+    constructor(
+        public dialogRef: MatDialogRef<AddCityDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: City, private cityService: CityService) {
+        this.data = data;
+        if(data.id !== null){
+            this.headerText = 'Edit';
         }
-        return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
     }
 
+    ngOnInit() {
+        this.formData = new FormGroup({
+            id: new FormControl(this.data.id),
+            name: new FormControl(this.data.name),
+        });
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+
+    onClickSubmit(data) {
+        console.log(data);
+        this.city = {id: data.id, name: data.name};
+
+        this.cityService.addCity(this.city).toPromise()
+            .then(
+                City => {
+                    console.log(City);
+                    CityGenericService.instance.updateTable();
+                },
+                (e: HttpErrorResponse) => {
+                    console.log('HttpErrorResponse :: ' + e.message);
+                }
+            );
+    }
 }

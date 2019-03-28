@@ -56,6 +56,27 @@ paths:
                 $ref: 'models/models.yaml#/definitions/City'
         404:
           description: Page not found
+  /updateCity:
+    post:
+      tags:
+        - city
+      description: update City
+      operationId: updateCity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/City'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/City'
+        404:
+          description: Page not found
   /deleteCity/{id}:
     post:
       tags:
@@ -75,7 +96,7 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: 'models/models.yaml#/definitions/City'
+                $ref: 'models/models.yaml#/definitions/DeleteResult'
         404:
           description: Page not found
   /city/{id}:
