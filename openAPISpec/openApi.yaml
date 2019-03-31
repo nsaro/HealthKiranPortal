@@ -12,6 +12,10 @@ tags:
     description: User Management
   - name: city
     description: City Management
+  - name: test
+    description: Test Management
+  - name: lab
+    description: Lab Management
 
 paths:
   /addUser:
@@ -134,5 +138,211 @@ paths:
             application/json:
               schema:
                 $ref: 'models/models.yaml#/definitions/ArrayOfCities'
+        404:
+          description: Page not found
+  /addTest:
+    post:
+      tags:
+        - test
+      description: Add Test
+      operationId: addTest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/Test'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/Test'
+        404:
+          description: Page not found
+  /updateTest:
+    post:
+      tags:
+        - city
+      description: update Test
+      operationId: updateTest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/Test'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/Test'
+        404:
+          description: Page not found
+  /deleteTest/{id}:
+    post:
+      tags:
+        - test
+      description: Delete Test
+      operationId: deleteTestById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: TestId
+      responses:
+        200:
+          description: successfully deleted
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/DeleteResult'
+        404:
+          description: Page not found
+  /test/{id}:
+    get:
+      tags:
+        - test
+      description: Load test
+      operationId: getTestById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: TestId
+      responses:
+        200:
+          description: successfully received
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/Test'
+        404:
+          description: Page not found
+  /tests/:
+    get:
+      tags:
+        - test
+      description: Load tests
+      operationId: getAllTests
+      responses:
+        200:
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/ArrayOfTest'
+        404:
+          description: Page not found
+
+
+
+
+  /addLab:
+    post:
+      tags:
+        - lab
+      description: Add lab
+      operationId: addLab
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/Lab'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/Lab'
+        404:
+          description: Page not found
+  /updateLab:
+    post:
+      tags:
+        - lab
+      description: update Lab
+      operationId: updateLab
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/Lab'
+      responses:
+        200:
+          description: successfully added
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/Lab'
+        404:
+          description: Page not found
+  /deleteLab/{id}:
+    post:
+      tags:
+        - lab
+      description: Delete Lab
+      operationId: deleteLabById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: LabId
+      responses:
+        200:
+          description: successfully deleted
+          content:
+            'application/json':
+              schema:
+                $ref: 'models/models.yaml#/definitions/DeleteResult'
+        404:
+          description: Page not found
+  /lab/{id}:
+    get:
+      tags:
+        - lab
+      description: Load Lab
+      operationId: getLabById
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: LabId
+      responses:
+        200:
+          description: successfully received
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/Lab'
+        404:
+          description: Page not found
+  /labs/:
+    get:
+      tags:
+        - lab
+      description: Load labs
+      operationId: getAllLabs
+      responses:
+        200:
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/ArrayOfLab'
         404:
           description: Page not found

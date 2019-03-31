@@ -1,4 +1,4 @@
-import {Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 import {City, CityService} from "../../../generated/restClient";
 import {FormControl, FormGroup} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -8,10 +8,10 @@ import {CityGenericService} from "./CityGenericService";
 
 @Component({
     selector: 'app-cities',
-    templateUrl: './cities.component.html',
-    styleUrls: ['./cities.component.css']
+    templateUrl: './city.component.html',
+    styleUrls: ['./city.component.css']
 })
-export class CitiesComponent implements OnInit {
+export class CityComponent implements OnInit {
 
     cities: City[] = [{id: 0, name: ""}];
     displayedColumns: string[] = ['index', 'name', 'edit', 'delete'];
@@ -77,7 +77,7 @@ export class CitiesComponent implements OnInit {
 @Component({
     selector: 'add-edit-city-dialog',
     templateUrl: 'city.add.edit.dialog.html',
-    styleUrls: ['./cities.component.css']
+    styleUrls: ['./city.component.css']
 })
 export class AddCityDialog implements OnInit{
 

@@ -1,8 +1,7 @@
 package com.health.kiran.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name="Users")
 public class User {
@@ -22,7 +21,8 @@ public class User {
 
     private String address;
 
-    //private List<Appointment> appointments = null;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Booking> bookings;
 
     public Long getId() {
         return id;
@@ -79,11 +79,11 @@ public class User {
         this.address = address;
     }
 
-//    public List<Appointment> getAppointments() {
-//        return appointments;
-//    }
-//
-//    public void setAppointments(List<Appointment> appointments) {
-//        this.appointments = appointments;
-//    }
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
 }

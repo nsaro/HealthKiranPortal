@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>{{headerText}} LabTest</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content>
+    <mat-card-header>
+        <mat-card-subtitle>{{headerText}} Test to the application</mat-card-subtitle>
+    </mat-card-header>
+    <div class="form-container">
+        <mat-dialog-content [formGroup]="formData">
+            <input type="hidden" formControlName="id" value="{{data.id}}">
+            <mat-form-field>
+                <input matInput placeholder="Test Name" formControlName="name" value="{{data.name}}">
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="Special Requirements" formControlName="specialRequirements"
+                       value="{{data.specialRequirements}}"></textarea>
+            </mat-form-field>
+        </mat-dialog-content>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button (click)="onClickSubmit(formData.value)" color="primary"
+            [mat-dialog-close]="data.name" cdkFocusInitial>{{headerText}} Test
+    </button>
+</div>
+

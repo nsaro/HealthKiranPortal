@@ -18,29 +18,56 @@ definitions:
         type: string
       address:
         type: string
-#      appointments:
-#        type: array
-#        items:
-#          $ref: '#/definitions/Appointment'
+      booking:
+        type: array
+        items:
+          $ref: '#/definitions/Booking'
 
-  Appointment:
+  WorkingHour:
     type: object
     properties:
-      labId:
+      id:
         type: integer
         format: int32
+      workingFromHour:
+        type: number
+      workingToHour:
+        type: number
+      workingFromMinute:
+        type: number
+      workingToMinute:
+        type: number
+
+  Booking:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      address:
+        type: string
       timing:
         type: string
       date:
         type: string
-      status:
+      mobileNumber:
+        type: number
+      email:
         type: string
-      labTest:
-        type: array
-        items:
-          $ref: '#/definitions/LabTest'
-
-  LabTest:
+      bookingStatus:
+        type: string
+        enum:
+          - SCHEDULED
+          - COMPLETED
+          - CANCELLED
+      collectionType:
+        type: string
+        enum:
+          - HOME
+          - LAB
+  Test:
     type: object
     properties:
       id:
@@ -51,6 +78,33 @@ definitions:
       specialRequirements:
         type: string
 
+  Price:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      originalPrice:
+        type: integer
+        format: int32
+      finalPrice:
+        type: integer
+        format: int32
+      discountPercentage:
+        type: integer
+        format: int32
+
+  LabTest:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      test:
+        $ref: '#/definitions/Test'
+      price:
+        $ref: '#/definitions/Price'
+
   City:
     type: object
     properties:
@@ -60,10 +114,70 @@ definitions:
       name:
         type: string
 
+  Lab:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      name:
+        type: string
+      area:
+        type: string
+      address:
+        type: string
+      pinCode:
+        type: number
+      contactPerson:
+        type: string
+      mobile:
+        type: number
+      certifiedBy:
+        type: string
+      vanFacility:
+        type: string
+      usualWorkingHours:
+        $ref: '#/definitions/WorkingHour'
+      sundayWorkingHours:
+        $ref: '#/definitions/WorkingHour'
+      ultraSoundWorkingHours:
+        $ref: '#/definitions/WorkingHour'
+      offDay:
+        type: string
+      city:
+        $ref: '#/definitions/City'
+      tests:
+        type: array
+        items:
+          $ref: '#/definitions/Test'
+      labTests:
+        type: array
+        items:
+          $ref: '#/definitions/LabTest'
+      bookings:
+        type: array
+        items:
+          $ref: '#/definitions/Booking'
+
   ArrayOfCities:
     type: array
     items:
       $ref: '#/definitions/City'
+
+  ArrayOfTest:
+    type: array
+    items:
+      $ref: '#/definitions/Test'
+
+  ArrayOfLabTest:
+    type: array
+    items:
+      $ref: '#/definitions/LabTest'
+
+  ArrayOfLab:
+    type: array
+    items:
+      $ref: '#/definitions/Lab'
 
   DeleteResult:
     type: string

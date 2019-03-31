@@ -28,7 +28,9 @@ export class RegisteredUsersComponent implements OnInit {
   onClickSubmit(data) {
     console.log(data);
     this.user = { id: null, address: data.address, email: data.email,
-      firstName: data.firstName, lastName: data.lastName, phone: data.phone, password: data.password};
+      firstName: data.firstName, lastName: data.lastName,
+      phone: data.phone, password: data.password,
+      booking: null};
 
     this.userService.adduser(this.user).toPromise()
       .then(

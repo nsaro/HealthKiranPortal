@@ -16,3 +16,34 @@ mat-toolbar.mat-toolbar {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table {
+  width: 90%;
+}
+.addButton{
+  padding-bottom: 20px;
+}
+.example-icon {
+  padding: 0 14px;
+}
+mat-form-field.mat-form-field {
+  font-size: 14px;
+}
+.mat-dialog-actions-padding{
+  padding: 20px 0px 20px 0px;
+}
+.mat-dialog-content{
+  padding-top: 20px;
+  height: auto;
+}
+.form-container{
+  padding: 30px;
+}
+.matCard {
+  width: 90%;
+  height: auto;
+  box-sizing: border-box;
+}
+.dialogContainer{
+  padding: 25px 50px 0px 25px;
+}

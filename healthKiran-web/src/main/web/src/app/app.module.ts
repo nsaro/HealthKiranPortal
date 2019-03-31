@@ -19,9 +19,9 @@ import {
   MatCheckboxModule,
   MAT_DIALOG_DEFAULT_OPTIONS
 } from '@angular/material';
-import {AddCityDialog, CitiesComponent} from './adminConsole/cities/cities.component';
-import { LabtestComponent } from './adminConsole/labtest/labtest.component';
-import { LabsComponent } from './adminConsole/labs/labs.component';
+import {AddCityDialog, CityComponent} from './adminConsole/cities/city.component';
+import {TestComponent} from './adminConsole/test/test.component';
+import {LabComponent} from './adminConsole/lab/lab.component';
 import { EmailComponent } from './adminConsole/email/email.component';
 import { ScheduleTestsComponent } from './adminConsole/schedule-tests/schedule-tests.component';
 import { SmsComponent } from './adminConsole/sms/sms.component';
@@ -31,6 +31,12 @@ import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import {AddTestDialog} from "./adminConsole/test/add-test-dialog.component";
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {SelectLabTestDialog} from "./adminConsole/lab/select.lab.test.dialog.component";
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -40,15 +46,17 @@ export function restClientConfigurationFactory() {
   declarations: [
     AppComponent,
     NavBarComponent,
-    CitiesComponent,
-    LabtestComponent,
-    LabsComponent,
+    CityComponent,
+    TestComponent,
     EmailComponent,
     ScheduleTestsComponent,
     SmsComponent,
     RegisteredUsersComponent,
     ContactsComponent,
-    AddCityDialog
+    AddCityDialog,
+    AddTestDialog,
+    LabComponent,
+    SelectLabTestDialog
   ],
   imports: [
     HttpClientModule,
@@ -70,10 +78,14 @@ export function restClientConfigurationFactory() {
     MatInputModule,
     MatTableModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatDividerModule,
+    MatGridListModule
   ],
   entryComponents: [
-    AddCityDialog
+    AddCityDialog, AddTestDialog, SelectLabTestDialog
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
