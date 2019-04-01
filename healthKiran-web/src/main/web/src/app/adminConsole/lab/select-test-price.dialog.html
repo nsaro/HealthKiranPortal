@@ -8,7 +8,7 @@
     <mat-form-field>
         <mat-label>Select Lab Test</mat-label>
         <mat-select multiple>
-            <mat-option *ngFor="let test of testList" [value]="test.name" (onSelectionChange)="onTestSelect($event)">
+            <mat-option *ngFor="let test of testList" [value]="test.id" (onSelectionChange)="onTestSelect($event)">
                 {{test.name}}
             </mat-option>
         </mat-select>

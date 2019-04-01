@@ -38,7 +38,6 @@ export class AddTestDialog implements OnInit {
     }
 
     onClickSubmit(data) {
-        debugger
         let test: Test;
         test = {id: data.id, name: data.name, specialRequirements: data.specialRequirements};
         this.testService.addTest(test).toPromise()

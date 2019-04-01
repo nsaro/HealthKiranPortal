@@ -9,7 +9,7 @@ public class LabTest {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "test_id", referencedColumnName = "id")
     private Test test;
 

@@ -16,9 +16,8 @@ export class TestComponent implements OnInit {
     displayedColumns: string[] = ['index', 'name', 'specialRequirements', 'edit', 'delete'];
     dataSource = new MatTableDataSource<Test>(this.tests);
 
-    constructor(private testService: TestService, public dialog: MatDialog, private testGenericService: TestGenericService) {
-        this.testService = testService;
-        testGenericService.updateTestsTable.subscribe(() => {
+    constructor(public dialog: MatDialog) {
+        TestGenericService.instance.updateTestsTable.subscribe(() => {
             this.getAllTests();
         });
     }
@@ -40,7 +39,7 @@ export class TestComponent implements OnInit {
     }
 
     private getAllTests() {
-        this.testService.getAllTests().toPromise()
+        TestGenericService.testService.getAllTests().toPromise()
             .then(
                 data => {
                     console.log(data);

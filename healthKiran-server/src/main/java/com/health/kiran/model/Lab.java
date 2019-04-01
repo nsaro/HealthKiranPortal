@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity(name="Labs")
 public class Lab {
-    
+
     @Id
     @GeneratedValue
     private Long id;
@@ -15,19 +15,24 @@ public class Lab {
     private String address;
     private Integer pinCode;
     private String contactPerson;
-    private Integer mobile;
-    private String workingHours;
-    private Boolean vanFacility;
+    private String phone;
+    private String vanFacility;
     private String certifiedBy;
-    private String sundayWorkingHours;
-    private String ultraSoundWorkingHours;
     private String offDay;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usualWorkingHours_id", referencedColumnName = "id")
+    private WorkingHour usualWorkingHours;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sundayWorkingHours_id", referencedColumnName = "id")
+    private WorkingHour sundayWorkingHours;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ultraSoundWorkingHours_id", referencedColumnName = "id")
+    private WorkingHour ultraSoundWorkingHours;
+
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Test> tests;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LabTest> labTests;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -81,27 +86,20 @@ public class Lab {
         this.contactPerson = contactPerson;
     }
 
-    public Integer getMobile() {
-        return mobile;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setMobile(Integer mobile) {
-        this.mobile = mobile;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getWorkingHours() {
-        return workingHours;
-    }
 
-    public void setWorkingHours(String workingHours) {
-        this.workingHours = workingHours;
-    }
-
-    public Boolean getVanFacility() {
+    public String getVanFacility() {
         return vanFacility;
     }
 
-    public void setVanFacility(Boolean vanFacility) {
+    public void setVanFacility(String vanFacility) {
         this.vanFacility = vanFacility;
     }
 
@@ -113,36 +111,12 @@ public class Lab {
         this.certifiedBy = certifiedBy;
     }
 
-    public String getSundayWorkingHours() {
-        return sundayWorkingHours;
-    }
-
-    public void setSundayWorkingHours(String sundayWorkingHours) {
-        this.sundayWorkingHours = sundayWorkingHours;
-    }
-
-    public String getUltraSoundWorkingHours() {
-        return ultraSoundWorkingHours;
-    }
-
-    public void setUltraSoundWorkingHours(String ultraSoundWorkingHours) {
-        this.ultraSoundWorkingHours = ultraSoundWorkingHours;
-    }
-
     public String getOffDay() {
         return offDay;
     }
 
     public void setOffDay(String offDay) {
         this.offDay = offDay;
-    }
-
-    public List<Test> getTests() {
-        return tests;
-    }
-
-    public void setTests(List<Test> tests) {
-        this.tests = tests;
     }
 
     public List<LabTest> getLabTests() {
@@ -167,5 +141,29 @@ public class Lab {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public WorkingHour getUsualWorkingHours() {
+        return usualWorkingHours;
+    }
+
+    public void setUsualWorkingHours(WorkingHour usualWorkingHours) {
+        this.usualWorkingHours = usualWorkingHours;
+    }
+
+    public WorkingHour getSundayWorkingHours() {
+        return sundayWorkingHours;
+    }
+
+    public void setSundayWorkingHours(WorkingHour sundayWorkingHours) {
+        this.sundayWorkingHours = sundayWorkingHours;
+    }
+
+    public WorkingHour getUltraSoundWorkingHours() {
+        return ultraSoundWorkingHours;
+    }
+
+    public void setUltraSoundWorkingHours(WorkingHour ultraSoundWorkingHours) {
+        this.ultraSoundWorkingHours = ultraSoundWorkingHours;
     }
 }

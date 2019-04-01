@@ -2,9 +2,11 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {LabTest, Test} from "../../../generated/restClient";
 import {MAT_DIALOG_DATA, MatDialogRef, MatTableDataSource} from "@angular/material";
 import {LabGenericService} from "./LabGenericService";
+import {TestGenericService} from "../test/TestGenericService";
+import {HttpErrorResponse} from "@angular/common/http";
 
 export interface LabTestTableData {
-    id: number;
+    labId: number;
     labTestName: string;
     price: string;
     discountPercentage :string;
@@ -23,13 +25,7 @@ export class SelectLabTestDialog implements OnInit {
     data: LabTest;
     displayedColumns: string[] = ['index', 'labName', 'price', 'discount'];
     labSelectionDataSource = new MatTableDataSource<LabTestTableData>(this.labTestTableData);
-
-    testList: Test[] = [
-        {id: 1, name: 'Liver Function Test', specialRequirements: 'No requirements'},
-        {id: 2, name: 'Kidney Function Test', specialRequirements: 'No requirements'},
-        {id: 3, name: 'Brain Function Test', specialRequirements: 'No requirements'},
-        {id: 4, name: 'Heart Test', specialRequirements: 'No requirements'}
-    ];
+    testList: Test[] = [];
 
     constructor(
         public dialogRef: MatDialogRef<SelectLabTestDialog>,
@@ -41,7 +37,7 @@ export class SelectLabTestDialog implements OnInit {
     }
 
     ngOnInit() {
-
+        this.getAllTests();
     }
 
     onNoClick(): void {
@@ -59,9 +55,8 @@ export class SelectLabTestDialog implements OnInit {
             let labTestExist = this.labTestTableData.filter(x => x.labTestName == event.source.value)[0];
             if(event.source.selected){
                 if(labTestExist){
-                    console.log('dont do anything');
                 } else {
-                    this.labTestTableData.push({id: 0, labTestName: event.source.value, price: "", discountPercentage: ""});
+                    this.labTestTableData.push({labId: event.source.value, labTestName: event.source.viewValue, price: "", discountPercentage: ""});
                 }
             } else {
                 if(labTestExist){
@@ -74,6 +69,19 @@ export class SelectLabTestDialog implements OnInit {
     }
     updateDataSourceTable(){
         this.labSelectionDataSource = new MatTableDataSource<LabTestTableData>(this.labTestTableData);
+    }
+
+    private getAllTests() {
+        TestGenericService.testService.getAllTests().toPromise()
+            .then(
+                data => {
+                    this.testList = data;
+                },
+                (e: HttpErrorResponse) => {
+                    console.log('HttpErrorResponse :: ' + e.message);
+                }
+            );
+
     }
 }
 

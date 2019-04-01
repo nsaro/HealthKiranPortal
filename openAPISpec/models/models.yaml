@@ -130,7 +130,7 @@ definitions:
         type: number
       contactPerson:
         type: string
-      mobile:
+      phone:
         type: number
       certifiedBy:
         type: string
@@ -146,10 +146,6 @@ definitions:
         type: string
       city:
         $ref: '#/definitions/City'
-      tests:
-        type: array
-        items:
-          $ref: '#/definitions/Test'
       labTests:
         type: array
         items:

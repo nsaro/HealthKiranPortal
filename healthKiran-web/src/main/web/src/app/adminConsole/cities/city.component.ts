@@ -17,9 +17,8 @@ export class CityComponent implements OnInit {
     displayedColumns: string[] = ['index', 'name', 'edit', 'delete'];
     dataSource = new MatTableDataSource<City>(this.cities);
 
-    constructor(private cityService: CityService, public dialog: MatDialog, public cityGenericService: CityGenericService) {
-        this.cityService = cityService;
-        cityGenericService.updateCitiesTable.subscribe(() => {
+    constructor(public dialog: MatDialog,) {
+        CityGenericService.instance.updateCitiesTable.subscribe(() => {
             this.getAllCities();
         });
     }
@@ -42,7 +41,7 @@ export class CityComponent implements OnInit {
     }
 
     private getAllCities() {
-        this.cityService.getAllCities().toPromise()
+        CityGenericService.cityService.getAllCities().toPromise()
             .then(
                 data => {
                     console.log(data);
