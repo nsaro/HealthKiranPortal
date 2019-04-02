@@ -60,7 +60,7 @@ export class CityComponent implements OnInit {
         this.openDialog(row.id.toString(), row.name);
     }
     delete(row?: City) {
-        this.cityService.deleteCityById(row.id.toString()).toPromise()
+        CityGenericService.cityService.deleteCityById(row.id.toString()).toPromise()
             .then(
                 result => {
                     console.log(result);
@@ -108,7 +108,7 @@ export class AddCityDialog implements OnInit{
         console.log(data);
         this.city = {id: data.id, name: data.name};
 
-        this.cityService.addCity(this.city).toPromise()
+        CityGenericService.cityService.addCity(this.city).toPromise()
             .then(
                 City => {
                     console.log(City);

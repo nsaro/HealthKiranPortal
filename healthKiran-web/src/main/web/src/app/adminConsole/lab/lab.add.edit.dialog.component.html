@@ -1,0 +1,189 @@
+<mat-horizontal-stepper linear>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="30px">
+            <ng-template matStepLabel>Enter Lab Basic Information</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Lab Name" formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Area" formControlName="area" required>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput placeholder="Address" formControlName="address" required></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="email?.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Pin Code" formControlName="pinCode" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select formControlName="city" required>
+                    <mat-option *ngFor="let city of cities" [value]="city.id">
+                        {{city.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Phone" formControlName="phone" required>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Include area code</mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Contact Person Name" formControlName="contactPerson">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Certified By" formControlName="certifiedBy">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Off Days" formControlName="offDay">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Van Facility</mat-label>
+                <mat-select formControlName="vanFacility">
+                    <mat-option *ngFor="let item of booleanValues" [value]="item.value">
+                        {{item.value}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+                <br/>
+                <button mat-button mat-raised-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Enter Lab Hours Information</ng-template>
+        <label>Usual Working hours </label>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-form-field>
+                <mat-label>Hours From</mat-label>
+                <mat-select formControlName="usualWorkingFromHour" required>
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Minutes From</mat-label>
+                <mat-select formControlName="usualWorkingFromMinute" required>
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Hours To</mat-label>
+                <mat-select formControlName="usualWorkingToHour" required>
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Minutes To</mat-label>
+                <mat-select formControlName="usualWorkingToMinute" required>
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <br>
+        <label>Sunday Working hours </label>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-form-field>
+                <mat-label>Hours From</mat-label>
+                <mat-select formControlName="sundayWorkingFromHour">
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Minutes From</mat-label>
+                <mat-select formControlName="sundayWorkingFromMinute">
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Hours To</mat-label>
+                <mat-select formControlName="sundayWorkingToHour">
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Minutes To</mat-label>
+                <mat-select formControlName="sundayWorkingToMinute">
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <br>
+        <label>Ultra Sound Working hours </label>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-form-field>
+                <mat-label>Hours From</mat-label>
+                <mat-select formControlName="ultraSoundWorkingFromHour">
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Minutes From</mat-label>
+                <mat-select formControlName="ultraSoundWorkingFromMinute">
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Hours To</mat-label>
+                <mat-select formControlName="ultraSoundWorkingToHour">
+                    <mat-option *ngFor="let item of hours" [value]="item.hour">
+                        {{item.hour}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Minutes To</mat-label>
+                <mat-select formControlName="ultraSoundWorkingToMinute">
+                    <mat-option *ngFor="let item of minutes" [value]="item.minute">
+                        {{item.minute}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br/>
+            <div style="padding: 20px">
+                <button mat-button mat-raised-button matStepperPrevious type="button">Back</button>
+                &nbsp;&nbsp;<button mat-button mat-raised-button matStepperNext type="button">Next</button>
+            </div>
+        </div>
+        </form>
+    </mat-step>
+    <mat-step >
+        <ng-template matStepLabel>Done</ng-template>
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+            <mat-label>Choose tests supported by lab and their pricing</mat-label>
+            <button mat-raised-button (click)="openDialog()" color="accent">Add Lab Test</button>
+        </div>
+        <div class="button-row">
+            <button mat-raised-button (click)="onClickSubmit()" color="primary">Save Lab</button>
+        </div>
+        <div class="button-row">
+            <button mat-button mat-raised-button matStepperPrevious type="button">Back</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

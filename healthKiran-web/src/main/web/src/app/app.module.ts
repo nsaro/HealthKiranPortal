@@ -21,7 +21,6 @@ import {
 } from '@angular/material';
 import {AddCityDialog, CityComponent} from './adminConsole/cities/city.component';
 import {TestComponent} from './adminConsole/test/test.component';
-import {LabComponent} from './adminConsole/lab/lab.component';
 import { EmailComponent } from './adminConsole/email/email.component';
 import { ScheduleTestsComponent } from './adminConsole/schedule-tests/schedule-tests.component';
 import { SmsComponent } from './adminConsole/sms/sms.component';
@@ -37,6 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {SelectLabTestDialog} from "./adminConsole/lab/select.lab.test.dialog.component";
+import {LabAddEditDialog} from "./adminConsole/lab/lab.add.edit.dialog.component";
+import {LabComponent} from "./adminConsole/lab/lab.component";
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -53,9 +54,10 @@ export function restClientConfigurationFactory() {
     SmsComponent,
     RegisteredUsersComponent,
     ContactsComponent,
+    LabComponent,
     AddCityDialog,
     AddTestDialog,
-    LabComponent,
+    LabAddEditDialog,
     SelectLabTestDialog
   ],
   imports: [
@@ -85,7 +87,7 @@ export function restClientConfigurationFactory() {
     MatGridListModule
   ],
   entryComponents: [
-    AddCityDialog, AddTestDialog, SelectLabTestDialog
+    AddCityDialog, AddTestDialog, SelectLabTestDialog, LabAddEditDialog
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]

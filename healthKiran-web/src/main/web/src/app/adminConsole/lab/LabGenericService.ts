@@ -9,16 +9,21 @@ export class LabGenericService {
 
     static instance: LabGenericService;
     static labService: LabService;
-    labTestTableData: LabTestTableData[] = [
-    ];
+    labTestTableData: LabTestTableData[] = [];
+    @Output() updateLabTestTable = new EventEmitter();
+    @Output() updateLabTable = new EventEmitter();
+
     constructor(private labService: LabService) {
         LabGenericService.instance = this;
         LabGenericService.labService = labService;
     }
-    @Output() updateLabTestTable = new EventEmitter();
 
     updateLabTestsTable(){
         this.updateLabTestTable.emit();
+    }
+
+    updateLabsTable(){
+        this.updateLabTable.emit();
     }
 
 }

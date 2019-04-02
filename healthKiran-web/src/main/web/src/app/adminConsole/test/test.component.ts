@@ -58,7 +58,7 @@ export class TestComponent implements OnInit {
     }
 
     delete(row?: Test) {
-        this.testService.deleteTestById(row.id.toString()).toPromise()
+        TestGenericService.testService.deleteTestById(row.id.toString()).toPromise()
             .then(
                 result => {
                     console.log(result);
