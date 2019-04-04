@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class LabTest {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @OneToOne(cascade = CascadeType.MERGE)

@@ -44,4 +44,10 @@ public class CityController {
 		City updatedCity = cityRepository.save(city);
 		return ResponseEntity.ok(updatedCity);
 	}
+
+	@GetMapping("/city/{id}")
+	public ResponseEntity<City> getLabById(@PathVariable("id") long id) {
+		City city = cityRepository.getOne(id);
+		return ResponseEntity.ok(city);
+	}
 }

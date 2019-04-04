@@ -45,4 +45,10 @@ public class LabController {
 		Lab updatedLab = labRepository.save(lab);
 		return ResponseEntity.ok(updatedLab);
 	}
+
+	@GetMapping("/lab/{id}")
+	public ResponseEntity<Lab> getLabById(@PathVariable("id") long id) {
+		Lab lab = labRepository.getOne(id);
+		return ResponseEntity.ok(lab);
+	}
 }

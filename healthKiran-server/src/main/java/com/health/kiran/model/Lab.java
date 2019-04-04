@@ -1,13 +1,17 @@
 package com.health.kiran.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
-
+@JsonAutoDetect
 @Entity(name="Labs")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Lab {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private String name;
@@ -20,21 +24,29 @@ public class Lab {
     private String certifiedBy;
     private String offDay;
 
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "usualWorkingHours_id", referencedColumnName = "id")
     private WorkingHour usualWorkingHours;
+
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sundayWorkingHours_id", referencedColumnName = "id")
     private WorkingHour sundayWorkingHours;
+
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ultraSoundWorkingHours_id", referencedColumnName = "id")
     private WorkingHour ultraSoundWorkingHours;
 
+    
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
     private City city;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LabTest> labTests;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Booking> bookings;
 
@@ -119,6 +131,7 @@ public class Lab {
         this.offDay = offDay;
     }
 
+    @JsonIgnoreProperties
     public List<LabTest> getLabTests() {
         return labTests;
     }
@@ -127,6 +140,7 @@ public class Lab {
         this.labTests = labTests;
     }
 
+    @JsonIgnoreProperties
     public List<Booking> getBookings() {
         return bookings;
     }

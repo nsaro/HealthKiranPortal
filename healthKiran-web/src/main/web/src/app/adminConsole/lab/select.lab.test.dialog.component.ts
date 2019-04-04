@@ -51,8 +51,7 @@ export class SelectLabTestDialog implements OnInit {
     onTestSelect(event)
     {
         if(event.isUserInput) {
-            console.log(event.source.value, event.source.selected);
-            let labTestExist = this.labTestTableData.filter(x => x.labTestName == event.source.value)[0];
+            let labTestExist = this.labTestTableData.filter(x => x.labTestName == event.source.viewValue)[0];
             if(event.source.selected){
                 if(labTestExist){
                 } else {

@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {LabAddEditDialog} from "./lab.add.edit.dialog.component";
 import {MatDialog, MatTableDataSource} from "@angular/material";
-import {City} from "../../../generated/restClient";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LabGenericService} from "./LabGenericService";
 
@@ -29,7 +28,6 @@ export class LabComponent implements OnInit {
         });
     }
     ngOnInit() {
-        debugger
         this.getAllLabs();
     }
     openDialog(): void {
@@ -42,11 +40,19 @@ export class LabComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
         });
     }
-    edit(row?: City) {
-        //this.openDialog(row.id.toString(), row.name);
+    edit(row?: LabTableData) {
         console.log(row.name);
+        LabGenericService.labService.getLabById(row.id.toString()).toPromise()
+            .then(
+                lab => {
+                    console.log(lab);
+                },
+                (e: HttpErrorResponse) => {
+                    console.log('HttpErrorResponse :: ' + e.message);
+                }
+            );
     }
-    delete(row?: City) {
+    delete(row?: LabTableData) {
         LabGenericService.labService.deleteLabById(row.id.toString()).toPromise()
             .then(
                 result => {

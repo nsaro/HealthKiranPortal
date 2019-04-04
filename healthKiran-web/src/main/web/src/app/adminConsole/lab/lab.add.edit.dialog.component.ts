@@ -117,14 +117,12 @@ export class LabAddEditDialog implements OnInit {
                 Lab => {
                     console.log(Lab);
                     this.closeDialog();
-                    // CityGenericService.instance.updateTable();
+                    LabGenericService.instance.updateLabsTable();
                 },
                 (e: HttpErrorResponse) => {
                     console.log('HttpErrorResponse :: ' + e.message);
                 }
             );
-        console.log(lab);
-        LabGenericService.instance.updateLabsTable();
     }
 
     private prepareLab() {
