@@ -10,6 +10,8 @@ export class LabGenericService {
     static instance: LabGenericService;
     static labService: LabService;
     labTestTableData: LabTestTableData[] = [];
+    testSelectedCounter = 0;
+    @Output() updateTestCountOnBadge = new EventEmitter();
     @Output() updateLabTestTable = new EventEmitter();
     @Output() updateLabTable = new EventEmitter();
 
@@ -24,6 +26,10 @@ export class LabGenericService {
 
     updateLabsTable(){
         this.updateLabTable.emit();
+    }
+    updateTestCount(count: number){
+        this.testSelectedCounter = count;
+        this.updateTestCountOnBadge.emit(this.testSelectedCounter);
     }
 
 }

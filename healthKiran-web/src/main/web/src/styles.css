@@ -20,6 +20,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 table {
   width: 90%;
 }
+::ng-deep .mat-horizontal-content-container {
+  overflow: hidden;
+  padding: 12px 24px 24px 24px;
+}
+
 .addButton{
   padding-bottom: 20px;
 }

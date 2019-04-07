@@ -38,6 +38,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {SelectLabTestDialog} from "./adminConsole/lab/select.lab.test.dialog.component";
 import {LabAddEditDialog} from "./adminConsole/lab/lab.add.edit.dialog.component";
 import {LabComponent} from "./adminConsole/lab/lab.component";
+import {MatBadgeModule} from '@angular/material/badge';
+import { DeleteConfirmationDialogComponent } from './adminConsole/lab/confirmationDialogs/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { DeleteCityConfirmationDialogComponent } from './adminConsole/cities/confirmationDialogs/delete-city-confirmation-dialog/delete-city-confirmation-dialog.component';
+import { DeleteTestConfirmationDialogComponent } from './adminConsole/test/confirmationDialogs/delete-test-confirmation-dialog/delete-test-confirmation-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -58,7 +63,10 @@ export function restClientConfigurationFactory() {
     AddCityDialog,
     AddTestDialog,
     LabAddEditDialog,
-    SelectLabTestDialog
+    SelectLabTestDialog,
+    DeleteConfirmationDialogComponent,
+    DeleteCityConfirmationDialogComponent,
+    DeleteTestConfirmationDialogComponent
   ],
   imports: [
     HttpClientModule,
@@ -84,10 +92,13 @@ export function restClientConfigurationFactory() {
     MatStepperModule,
     MatSelectModule,
     MatDividerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatBadgeModule,
+    MatSnackBarModule
   ],
   entryComponents: [
-    AddCityDialog, AddTestDialog, SelectLabTestDialog, LabAddEditDialog
+    AddCityDialog, AddTestDialog, SelectLabTestDialog, LabAddEditDialog, DeleteConfirmationDialogComponent,
+    DeleteCityConfirmationDialogComponent, DeleteTestConfirmationDialogComponent
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]

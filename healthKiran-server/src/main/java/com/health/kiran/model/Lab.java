@@ -13,32 +13,21 @@ public class Lab {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String area;
     private String address;
+    private String facility;
+    private String description;
     private Integer pinCode;
     private String contactPerson;
     private String phone;
+    private String email;
     private String vanFacility;
     private String certifiedBy;
     private String offDay;
-
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usualWorkingHours_id", referencedColumnName = "id")
-    private WorkingHour usualWorkingHours;
-
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "sundayWorkingHours_id", referencedColumnName = "id")
-    private WorkingHour sundayWorkingHours;
-
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ultraSoundWorkingHours_id", referencedColumnName = "id")
-    private WorkingHour ultraSoundWorkingHours;
-
+    private String usualWorkingHours;
+    private String sundayWorkingHours;
+    private String ultraSoundWorkingHours;
     
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "city_id", referencedColumnName = "id")
@@ -131,7 +120,6 @@ public class Lab {
         this.offDay = offDay;
     }
 
-    @JsonIgnoreProperties
     public List<LabTest> getLabTests() {
         return labTests;
     }
@@ -140,7 +128,6 @@ public class Lab {
         this.labTests = labTests;
     }
 
-    @JsonIgnoreProperties
     public List<Booking> getBookings() {
         return bookings;
     }
@@ -157,27 +144,51 @@ public class Lab {
         this.city = city;
     }
 
-    public WorkingHour getUsualWorkingHours() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsualWorkingHours() {
         return usualWorkingHours;
     }
 
-    public void setUsualWorkingHours(WorkingHour usualWorkingHours) {
+    public void setUsualWorkingHours(String usualWorkingHours) {
         this.usualWorkingHours = usualWorkingHours;
     }
 
-    public WorkingHour getSundayWorkingHours() {
+    public String getSundayWorkingHours() {
         return sundayWorkingHours;
     }
 
-    public void setSundayWorkingHours(WorkingHour sundayWorkingHours) {
+    public void setSundayWorkingHours(String sundayWorkingHours) {
         this.sundayWorkingHours = sundayWorkingHours;
     }
 
-    public WorkingHour getUltraSoundWorkingHours() {
+    public String getUltraSoundWorkingHours() {
         return ultraSoundWorkingHours;
     }
 
-    public void setUltraSoundWorkingHours(WorkingHour ultraSoundWorkingHours) {
+    public void setUltraSoundWorkingHours(String ultraSoundWorkingHours) {
         this.ultraSoundWorkingHours = ultraSoundWorkingHours;
+    }
+
+    public String getFacility() {
+        return facility;
+    }
+
+    public void setFacility(String facility) {
+        this.facility = facility;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

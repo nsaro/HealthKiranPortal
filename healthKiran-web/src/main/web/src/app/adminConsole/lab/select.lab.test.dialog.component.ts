@@ -6,10 +6,12 @@ import {TestGenericService} from "../test/TestGenericService";
 import {HttpErrorResponse} from "@angular/common/http";
 
 export interface LabTestTableData {
-    labId: number;
+    labTestId: number;
+    testObjId: number;
+    priceObjId: number;
     labTestName: string;
-    price: string;
-    discountPercentage :string;
+    price: number;
+    discountPercentage :number;
 }
 
 @Component({
@@ -21,19 +23,21 @@ export interface LabTestTableData {
 export class SelectLabTestDialog implements OnInit {
 
     labTestTableData = LabGenericService.instance.labTestTableData;
-
-    data: LabTest;
+    selectedTestOptions: number[] = [];
+    selectedLabTests: LabTest[];
     displayedColumns: string[] = ['index', 'labName', 'price', 'discount'];
     labSelectionDataSource = new MatTableDataSource<LabTestTableData>(this.labTestTableData);
     testList: Test[] = [];
+    _labTest : any;
 
     constructor(
         public dialogRef: MatDialogRef<SelectLabTestDialog>,
-        @Inject(MAT_DIALOG_DATA) public labTest: LabTest, private labGenericService: LabGenericService) {
-        this.data = labTest;
+        @Inject(MAT_DIALOG_DATA) public labTest: any, private labGenericService: LabGenericService) {
+
         labGenericService.updateLabTestTable.subscribe(() => {
             this.updateDataSourceTable();
         });
+        this._labTest = labTest;
     }
 
     ngOnInit() {
@@ -46,8 +50,46 @@ export class SelectLabTestDialog implements OnInit {
 
     onClickSubmit() {
         console.log(this.labTestTableData);
+        LabGenericService.instance.labTestTableData = this.labTestTableData;
+        LabGenericService.instance.updateTestCount(this.labTestTableData.length);
+        this.dialogRef.close();
     }
 
+    loadExistingTestsToTable(){
+        let selectedLabTestTableData: LabTestTableData[] = [];
+
+        if (this.labTestTableData.length > 0 && (this.labTestTableData[0].testObjId !== null &&
+            this.labTestTableData[0].priceObjId !== null)) {
+
+            this.labTestTableData.forEach(labTest => {
+                selectedLabTestTableData.push({labTestId : labTest.labTestId,
+                    testObjId : labTest.testObjId,
+                    priceObjId : labTest.priceObjId,
+                    labTestName : labTest.labTestName,
+                    discountPercentage: labTest.discountPercentage,
+                    price: labTest.price});
+                let test: LabTest = this.testList.find(x => x.name === labTest.labTestName);
+                if(test){
+                    this.selectedTestOptions.push(test.id);
+                }
+            })
+        } else {
+            this.selectedLabTests.forEach(labTest => {
+                selectedLabTestTableData.push({labTestId : labTest.id,
+                    testObjId : labTest.test.id,
+                    priceObjId : labTest.price.id,
+                    labTestName : labTest.test.name,
+                    discountPercentage: labTest.price.discountPercentage,
+                    price: labTest.price.originalPrice});
+                let test: LabTest = this.testList.find(x => x.name === labTest.test.name);
+                if(test){
+                    this.selectedTestOptions.push(test.id);
+                }
+            });
+        }
+        this.labTestTableData = selectedLabTestTableData;
+        this.updateDataSourceTable();
+    }
     onTestSelect(event)
     {
         if(event.isUserInput) {
@@ -55,7 +97,7 @@ export class SelectLabTestDialog implements OnInit {
             if(event.source.selected){
                 if(labTestExist){
                 } else {
-                    this.labTestTableData.push({labId: event.source.value, labTestName: event.source.viewValue, price: "", discountPercentage: ""});
+                    this.labTestTableData.push({labTestId: null,  testObjId : event.source.value, priceObjId: null, labTestName: event.source.viewValue, price: null, discountPercentage: null});
                 }
             } else {
                 if(labTestExist){
@@ -75,6 +117,10 @@ export class SelectLabTestDialog implements OnInit {
             .then(
                 data => {
                     this.testList = data;
+                    if(this._labTest.labTests){
+                        this.selectedLabTests = this._labTest.labTests;
+                        this.loadExistingTestsToTable();
+                    }
                 },
                 (e: HttpErrorResponse) => {
                     console.log('HttpErrorResponse :: ' + e.message);

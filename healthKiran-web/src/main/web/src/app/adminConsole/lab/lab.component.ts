@@ -3,6 +3,7 @@ import {LabAddEditDialog} from "./lab.add.edit.dialog.component";
 import {MatDialog, MatTableDataSource} from "@angular/material";
 import {HttpErrorResponse} from "@angular/common/http";
 import {LabGenericService} from "./LabGenericService";
+import {DeleteConfirmationDialogComponent} from "./confirmationDialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
 
 export interface LabTableData {
     id: number;
@@ -30,11 +31,23 @@ export class LabComponent implements OnInit {
     ngOnInit() {
         this.getAllLabs();
     }
-    openDialog(): void {
+
+    openDeleteLabDialog(labId, labName): void {
+        const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
+            width: '550px',
+            data: { id: labId, name: labName },
+            hasBackdrop: true
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
+
+    openDialog(lab): void {
         const dialogRef = this.dialog.open(LabAddEditDialog, {
             width: '850px',
-            data: {
-            },
+            data: {lab : lab},
             hasBackdrop: true
         });
         dialogRef.afterClosed().subscribe(result => {
@@ -46,6 +59,7 @@ export class LabComponent implements OnInit {
             .then(
                 lab => {
                     console.log(lab);
+                    this.openDialog(lab);
                 },
                 (e: HttpErrorResponse) => {
                     console.log('HttpErrorResponse :: ' + e.message);
@@ -53,16 +67,7 @@ export class LabComponent implements OnInit {
             );
     }
     delete(row?: LabTableData) {
-        LabGenericService.labService.deleteLabById(row.id.toString()).toPromise()
-            .then(
-                result => {
-                    console.log(result);
-                    LabGenericService.instance.updateLabsTable();
-                },
-                (e: HttpErrorResponse) => {
-                    console.log('HttpErrorResponse :: ' + e.message);
-                }
-            );
+        this.openDeleteLabDialog(row.id, row.name);
     }
     private getAllLabs() {
         LabGenericService.labService.getAllLabs().toPromise()

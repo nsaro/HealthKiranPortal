@@ -7,7 +7,7 @@
     <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="20px">
     <mat-form-field>
         <mat-label>Select Lab Test</mat-label>
-        <mat-select multiple>
+        <mat-select multiple [(ngModel)]="selectedTestOptions">
             <mat-option *ngFor="let test of testList" [value]="test.id" (onSelectionChange)="onTestSelect($event)">
                 {{test.name}}
             </mat-option>
@@ -51,7 +51,6 @@
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-raised-button (click)="onNoClick()">Cancel</button>
-    <button mat-raised-button (click)="onClickSubmit()" color="primary"
-            [mat-dialog-close]="data.name" cdkFocusInitial>Ok
+    <button mat-raised-button (click)="onClickSubmit()" color="primary" cdkFocusInitial>Ok
     </button>
 </mat-dialog-actions>

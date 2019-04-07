@@ -4,6 +4,8 @@ import {MatDialog, MatTableDataSource} from "@angular/material";
 import {HttpErrorResponse} from "@angular/common/http";
 import {TestGenericService} from "./TestGenericService";
 import {AddTestDialog} from "./add-test-dialog.component";
+import {DeleteCityConfirmationDialogComponent} from "../cities/confirmationDialogs/delete-city-confirmation-dialog/delete-city-confirmation-dialog.component";
+import {DeleteTestConfirmationDialogComponent} from "./confirmationDialogs/delete-test-confirmation-dialog/delete-test-confirmation-dialog.component";
 
 @Component({
     selector: 'app-test',
@@ -37,6 +39,17 @@ export class TestComponent implements OnInit {
             console.log('The dialog was closed : ' + result);
         });
     }
+    openDeleteTestDialog(testId, testName): void {
+        const dialogRef = this.dialog.open(DeleteTestConfirmationDialogComponent, {
+            width: '550px',
+            data: { id: testId, name: testName },
+            hasBackdrop: true
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
 
     private getAllTests() {
         TestGenericService.testService.getAllTests().toPromise()
@@ -58,16 +71,7 @@ export class TestComponent implements OnInit {
     }
 
     delete(row?: Test) {
-        TestGenericService.testService.deleteTestById(row.id.toString()).toPromise()
-            .then(
-                result => {
-                    console.log(result);
-                    TestGenericService.instance.updateTable();
-                },
-                (e: HttpErrorResponse) => {
-                    console.log('HttpErrorResponse :: ' + e.message);
-                }
-            );
+        this.openDeleteTestDialog(row.id, row.name);
     }
 }
 

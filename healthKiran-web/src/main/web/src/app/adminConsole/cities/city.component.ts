@@ -5,6 +5,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {MatTableDataSource} from "@angular/material";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {CityGenericService} from "./CityGenericService";
+import {DeleteConfirmationDialogComponent} from "../lab/confirmationDialogs/delete-confirmation-dialog/delete-confirmation-dialog.component";
+import {DeleteCityConfirmationDialogComponent} from "./confirmationDialogs/delete-city-confirmation-dialog/delete-city-confirmation-dialog.component";
 
 @Component({
     selector: 'app-cities',
@@ -40,6 +42,18 @@ export class CityComponent implements OnInit {
         });
     }
 
+    openDeleteCityDialog(cityId, cityName): void {
+        const dialogRef = this.dialog.open(DeleteCityConfirmationDialogComponent, {
+            width: '550px',
+            data: { id: cityId, name: cityName },
+            hasBackdrop: true
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
+
     private getAllCities() {
         CityGenericService.cityService.getAllCities().toPromise()
             .then(
@@ -60,16 +74,7 @@ export class CityComponent implements OnInit {
         this.openDialog(row.id.toString(), row.name);
     }
     delete(row?: City) {
-        CityGenericService.cityService.deleteCityById(row.id.toString()).toPromise()
-            .then(
-                result => {
-                    console.log(result);
-                    CityGenericService.instance.updateTable();
-                },
-                (e: HttpErrorResponse) => {
-                    console.log('HttpErrorResponse :: ' + e.message);
-                }
-            );
+        this.openDeleteCityDialog(row.id, row.name);
     }
 }
 
