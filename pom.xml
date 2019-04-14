@@ -19,6 +19,7 @@
     <modules>
         <module>healthKiran-server</module>
         <module>healthKiran-web</module>
+        <module>healthKiran-frontEnd</module>
     </modules>
     <dependencies>
         <dependency>
