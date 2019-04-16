@@ -57,3 +57,29 @@ width: 100%;
   margin-right: auto;
   width: 20%;
 }
+.iconContainer {
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+  padding-top: 50%;
+  background: #ef8913;
+}
+.majorContainer {
+  text-align: center;
+  padding: 50px 0;
+}
+.majorContainer .icon {
+  width: 18%;
+  display: inline-block;
+  padding: 18px;
+  margin: 0 9px;
+}
+.textInfo{
+  padding-top: 15px;
+}
+.imageIcon {
+  max-width: 100%;
+}
+.iconInfoBg{
+  background-color: #ececec;
+}
