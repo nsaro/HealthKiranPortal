@@ -9,13 +9,13 @@
       </ul>
       <ul class="navbar-nav nav-flex-icons">
         <li class=" " >
-          <a class="btn btn-info btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-phone"></i>Call To Book</a>
+          <a class="btn btn-info cyan darken-1 btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-phone"></i>Call To Book</a>
         </li>
         <li class=" " >
-          <a class="btn btn-info btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-sign-in"></i>Login</a>
+          <a class="btn btn-info cyan darken-1 btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-sign-in"></i>Login</a>
         </li>
         <li class="nav-item " >
-          <a class="btn btn-info btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-user-plus"></i>Sign Up</a>
+          <a class="btn btn-info cyan darken-1 btn-rounded btn-sm waves-effect waves-light"><i class="fa fa-user-plus"></i>Sign Up</a>
         </li>
         <li class="nav-item waves-dark" mdbWavesEffect>
           <a class="nav-link"><i class="fa fa-facebook-f"></i></a>
@@ -29,126 +29,87 @@
       </ul>
     </links>
   </mdb-navbar>
-  <!-- Main -->
-  <div class="view">
-    <div class="full-bg-img">
-      <div class="mask rgba-black-light flex-center">
-
-        <div class="container text-center white-text">
-          <div class="row">
-            <div class="col">
-            <div class="imageLogo"><img src="../assets/logoAlone.png"></div>
-            </div>
-          </div>
-          <div class="white-text text-center wow fadeInUp">
-            <h2>Find Best Labs At Affordable Prices</h2>
-            <h6>Assured Quality, Best Prices, Cost Comparison & Huge Discounts</h6>
-            <br>
-            <div class="roundCorners">
-              <div class="container">
-                <div class="row">
-                  <div class="col">
-                    <span style="color: #3d8394; float: left;">Search the lab near you</span>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm">
-                    <form class="example-form">
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="City" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                            <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
-                            <span>{{state.name}}</span> |
-                            <small>Population: {{state.population}}</small>
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                  <div class="col-sm">
-                    <form class="example-form">
-                      <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Select Lab Test" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
-                        <mat-autocomplete #auto="matAutocomplete">
-                          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                            <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
-                            <span>{{state.name}}</span> |
-                            <small>Population: {{state.population}}</small>
-                          </mat-option>
-                        </mat-autocomplete>
-                      </mat-form-field>
-                    </form>
-                  </div>
-                  <div class="col-sm">
-                    <button mdbBtn type="button" color="info" rounded="true" mdbWavesEffect class="bigButton">Search</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- /.Main -->
 </header>
 <!--Main Layout-->
-<main class="text-center py-5" class="iconInfoBg">
 
-  <div class="majorContainer">
-  <div class="container">
+<router-outlet></router-outlet>
 
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-1 pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
     <div class="row">
-      <div class="col-md-12" align="center">
-        <h1 class="display-5" style="padding-bottom: 20px;">Why Health Kiran ?</h1>
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3" style="padding-left: 30px;">
+
+        <!-- Content -->
+        <h5 class="text-uppercase"><img src="../assets/logo_white.png" style="width: 250px;"></h5>
+        <p>A Discount Providing Platform on all Diagnostic Services at your nearest Labs.</p>
+        <ul class="social">
+          <li><a href="https://www.facebook.com/bookmerilab" target="_blank"><i class="fa fa-facebook"></i></a></li>
+          <li><a href="https://twitter.com/bookmerilab" target="_blank"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://plus.google.com/+Bookmerilab" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
       </div>
-      <div class="col-sm-2">
-        <img src="../assets/customerService.png" class="imageIcon" alt="Customer Service">
-        <div class="textInfo">
-          <h6>2000+</h6>
-          <h6>Satisfied Customers</h6>
-        </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Quick Links</h5>
+
+        <ul>
+          <li><a href="https://bookmerilab.com/"><i class="fa fa-angle-right"></i> Home</a></li>
+          <li><a href="https://bookmerilab.com/about"><i class="fa fa-angle-right"></i> About Us</a></li>
+          <li><a href="https://bookmerilab.com/lab/diagnostic-centers-india"><i class="fa fa-angle-right"></i>Diagnostic Centers</a></li>
+          <li><a href="https://bookmerilab.com/terms_condition"><i class="fa fa-angle-right"></i> Term of use</a></li>
+          <li><a href="https://bookmerilab.com/privacy_policy"><i class="fa fa-angle-right"></i> Privacy Policy</a></li>
+          <li><a href="https://bookmerilab.com/blog/refund-and-cancellation" target="_blank"><i class="fa fa-angle-right"></i> Refund Policy</a></li>
+          <li><a href="https://bookmerilab.com/faq"><i class="fa fa-angle-right"></i> FAQ </a></li>
+          <li><a href="#" target="_blank"><i class="fa fa-angle-right"></i> Career</a></li>
+          <li><a href="https://bookmerilab.com/blog" target="_blank"><i class="fa fa-angle-right"></i> Blog</a></li>
+          <li><a href="https://bookmerilab.com/blog/contact-us" target="_blank"><i class="fa fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+
       </div>
-      <div class="col-sm-2">
-        <img src="../assets/customerRatings.png" class="imageIcon" alt="Higher Ratings">
-        <div class="textInfo">
-          <h6>4 Start Rating</h6>
-          <h6>Large Fan Base</h6>
-        </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Location</h5>
+
+        <ul>
+          <li><i class="fa fa-map-marker" aria-hidden="true"></i> Pocket 2, Sector-12, Dwarka,New Delhi</li>
+          <li><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:8882-36-8882">8882-36-8882</a></li>
+          <li><i class="fa fa-whatsapp" aria-hidden="true"></i> <a target="_blank" href="https://web.whatsapp.com/send?phone=9999216869&amp;text=Hi!"> +91 8882-36-8882</a></li>
+          <li><i class="fa fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:care@bookmerilab.com">care@bookmerilab.com</a></li>
+        </ul>
+
       </div>
-      <div class="col-sm-2">
-        <img src="../assets/acrossCities.png" class="imageIcon" alt="Across India">
-        <div class="textInfo">
-          <h6>100+ Labs</h6>
-          <h6>Serving across Delhi</h6>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <img src="../assets/customerCare.png" class="imageIcon" alt="Excellent Support">
-        <div class="textInfo">
-          <h6>24 Hours</h6>
-          <h6>Dedicated Support</h6>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <img src="../assets/labTest.png" class="imageIcon" alt="Excellent Support">
-        <div class="textInfo">
-          <h6>40+ Lab Tests</h6>
-          <h6>Supports Wide Range</h6>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <img src="../assets/genuineLabs.png" class="imageIcon" alt="Across India">
-        <div class="textInfo">
-          <h6>Trusted Partners</h6>
-          <h6>Only Certified Labs</h6>
-        </div>
-      </div>
+      <!-- Grid column -->
+
     </div>
+    <!-- Grid row -->
+
   </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="https://mdbootstrap.com/education/angular/"> HealthKiran.com</a>
   </div>
-</main>
-<!--Main Layout-->
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

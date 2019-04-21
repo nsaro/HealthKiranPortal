@@ -1,0 +1,82 @@
+<div class="search">
+  <div class="container text-center white-text">
+    <div class="roundCorners">
+      <form [formGroup]="searchFormGroup" (ngSubmit)="onClickSubmit(searchFormGroup.value)">
+        <div class="row">
+          <div class="col">
+            <span style="color: #3d8394; float: left;">Search the lab near you</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div class="example-form">
+              <mat-form-field class="mat-field-full-width">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="cityId" required>
+                  <mat-option *ngFor="let city of cities" [value]="city.id">
+                    {{city.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="example-form">
+              <mat-form-field class="mat-field-full-width">
+                <mat-label>Select Lab Test</mat-label>
+                <mat-select multiple formControlName="testIds" [(ngModel)]="selectedTestOptions" required>
+                  <mat-option *ngFor="let test of testList" [value]="test.id">
+                    {{test.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-sm">
+            <button mdbBtn type="submit" color="info" [disabled]="searchFormGroup.invalid" rounded="true"
+                    mdbWavesEffect class="bigButton cyan darken-1">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<main>
+  <div class="majorContainer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 cardSpacer" *ngFor="let item of items">
+          <mdb-card>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h5><i class="fa fa-flask"></i><a href="">Dr Lal Path Labs</a></h5>
+              </mdb-card-title>
+              <mdb-card-text>
+                <hr>
+                <div class="container">
+                  <div class="row">
+                      <div class="col-md-8 textLeft">
+                        <h7><i class="fa fa-map-marker" aria-hidden="true"></i> Home Collection</h7>
+                        <br>
+                        <h7><i class="fa fa-thumbs-up" aria-hidden="true"></i> Certified By: NABL,CAP</h7>
+                        <br>
+                        <a class="spanClick" (click)="openPriceBreakUpDialog()">Price Break Up</a>
+                      </div>
+                      <div class="col-md-4 textLeft">
+                        <h6><span style="padding-right: 10px"><del><i class="fa fa-inr" aria-hidden="true"></i>1130</del></span>
+                          <span class="payble"><i class="fa fa-inr" aria-hidden="true"></i>1130</span></h6>
+                        <h6>0% Discount</h6>
+                      </div>
+                  </div>
+                </div>
+              </mdb-card-text>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Add To Cart</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {MatTableModule} from '@angular/material/table';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,16 +12,31 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SearchPageComponent } from './search-page/search-page.component';
+import { PriceBreakUpDialogComponent } from './price-break-up-dialog/price-break-up-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ApiModule, Configuration} from '../generated/restClient';
+import {environment} from "../environments/environment";
+import {HttpClientModule} from '@angular/common/http';
 
+export function restClientConfigurationFactory() {
+  return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
+}
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LandingPageComponent,
+    SearchPageComponent,
+    PriceBreakUpDialogComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
+    ApiModule.forRoot(restClientConfigurationFactory),
     AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
@@ -30,10 +45,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatInputModule,
     MatToolbarModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule,
+    MatTableModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PriceBreakUpDialogComponent]
 })
 export class AppModule { }

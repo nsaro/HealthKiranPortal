@@ -15,7 +15,6 @@ export class DeleteConfirmationDialogComponent {
   constructor(
       public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) {
-    debugger
     this.id = data.id;
     this.name = data.name;
   }

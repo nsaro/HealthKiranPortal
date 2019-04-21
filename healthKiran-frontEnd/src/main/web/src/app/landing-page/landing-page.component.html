@@ -1,0 +1,267 @@
+<!-- Main -->
+<div class="view">
+  <div class="full-bg-img">
+    <div class="mask rgba-black-light flex-center">
+
+      <div class="container text-center white-text">
+        <div class="row">
+          <div class="col">
+            <div class="imageLogo"><img src="../assets/logoAlone.png"></div>
+          </div>
+        </div>
+        <div class="white-text text-center wow fadeInUp">
+          <h2>Find Best Labs At Affordable Prices</h2>
+          <h6>Assured Quality, Best Prices, Cost Comparison & Huge Discounts</h6>
+          <br>
+          <div class="roundCorners">
+            <form [formGroup]="searchFormGroup" (ngSubmit)="onClickSubmit(searchFormGroup.value)">
+              <div class="row">
+                <div class="col">
+                  <span style="color: #3d8394; float: left;">Search the lab near you</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <div class="example-form">
+                    <mat-form-field class="mat-field-full-width">
+                      <mat-label>City</mat-label>
+                      <mat-select formControlName="cityId" required>
+                        <mat-option *ngFor="let city of cities" [value]="city.id">
+                          {{city.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div class="example-form">
+                    <mat-form-field class="mat-field-full-width">
+                      <mat-label>Select Lab Test</mat-label>
+                      <mat-select multiple formControlName="testIds" required>
+                        <mat-option *ngFor="let test of testList" [value]="test.id">
+                          {{test.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <button mdbBtn type="submit" color="info" [disabled]="searchFormGroup.invalid" rounded="true"
+                          mdbWavesEffect class="bigButton cyan darken-1">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="text-center py-5" class="iconInfoBg">
+
+  <div class="majorContainer">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12" align="center">
+          <h1 class="display-5" style="padding-bottom: 20px;">Why Health Kiran ?</h1>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/customerService.png" class="imageIcon" alt="Customer Service">
+          <div class="textInfo">
+            <h6>2000+</h6>
+            <h6>Satisfied Customers</h6>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/customerRatings.png" class="imageIcon" alt="Higher Ratings">
+          <div class="textInfo">
+            <h6>4 Start Rating</h6>
+            <h6>Large Fan Base</h6>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/acrossCities.png" class="imageIcon" alt="Across India">
+          <div class="textInfo">
+            <h6>100+ Labs</h6>
+            <h6>Serving across Delhi</h6>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/customerCare.png" class="imageIcon" alt="Excellent Support">
+          <div class="textInfo">
+            <h6>24 Hours</h6>
+            <h6>Dedicated Support</h6>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/labTest.png" class="imageIcon" alt="Excellent Support">
+          <div class="textInfo">
+            <h6>40+ Lab Tests</h6>
+            <h6>Supports Wide Range</h6>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <img src="../assets/genuineLabs.png" class="imageIcon" alt="Across India">
+          <div class="textInfo">
+            <h6>Trusted Partners</h6>
+            <h6>Only Certified Labs</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--Main Layout-->
+<main class="text-center">
+
+  <div class="majorContainer">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-3">
+          <mdb-card style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(6).jpg');">
+            <mdb-card-img src="../assets/pathological-test.png" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h5>Pathological Tests</h5>
+              </mdb-card-title>
+              <mdb-card-text> All Blood Tests, Urine Tests, KFT, LFT etc.
+              </mdb-card-text>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Know More</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <div class="col-sm-3">
+          <mdb-card>
+            <mdb-card-img src="../assets/radiological-test.png" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h5>Radiological Tests</h5>
+              </mdb-card-title>
+              <mdb-card-text> MRI, CT-Scan, PET Scan, Ultrasound, Color Doppler etc.
+              </mdb-card-text>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Know More</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <div class="col-sm-3">
+          <mdb-card>
+            <mdb-card-img src="../assets/health-test.png" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h5>Health Packages</h5>
+              </mdb-card-title>
+              <mdb-card-text> Basic, Intermediate, Comprehensive Health Package
+              </mdb-card-text>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Know More</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <div class="col-sm-3">
+          <mdb-card>
+            <mdb-card-img src="../assets/special-test.png" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body>
+              <mdb-card-title>
+                <h5>Special Tests</h5>
+              </mdb-card-title>
+              <mdb-card-text> DNA Testing, Cancer Marker, Nuclear Testing etc.
+              </mdb-card-text>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Know More</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<main class="text-center">
+  <div class="majorContainer">
+    <div class="container">
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+          <!--Card-->
+          <mdb-card class="testimonial-card">
+            <!--Background color-->
+            <div class="card-up spacer">
+              <img src="../assets/healthCheckUp1.png" class="rounded-circle img-fluid healthCheckUpImages">
+            </div>
+
+            <mdb-card-body>
+              <!--Name-->
+              <h5 class="font-weight-bold mb-4">Basic Health Checkup</h5>
+              <hr>
+              <h6>60 Tests</h6>
+              <hr>
+              <h6>
+                <del>Rs. 2,000</del>
+              </h6>
+              <hr>
+              <h6>Rs. 699/- (65% discount)</h6>
+              <hr>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Book Now</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+          <!--Card-->
+          <mdb-card class="testimonial-card">
+            <!--Background color-->
+            <div class="card-up spacer">
+              <img src="../assets/healthCheckUp2.png" class="rounded-circle img-fluid healthCheckUpImages">
+            </div>
+            <mdb-card-body>
+              <!--Name-->
+              <h5 class="font-weight-bold mb-4">Full Body Health
+                Checkup</h5>
+              <hr>
+              <h6>83 Tests</h6>
+              <hr>
+              <h6>
+                <del>Rs. 3,000</del>
+              </h6>
+              <hr>
+              <h6>Rs. 1299/- (60% discount)</h6>
+              <hr>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Book Now</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        <!--Grid column-->
+
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4">
+          <!--Card-->
+          <mdb-card class="testimonial-card">
+            <!--Background color-->
+            <div class="card-up spacer">
+              <img src="../assets/healthCheckUp3.png" class="rounded-circle img-fluid healthCheckUpImages">
+            </div>
+            <mdb-card-body>
+              <!--Name-->
+              <h5 class="font-weight-bold mb-4">Comprehensive Health
+                Packages</h5>
+              <hr>
+              <h6>86 Tests</h6>
+              <hr>
+              <h6>
+                <del>Rs. 6,000</del>
+              </h6>
+              <hr>
+              <h6>Rs. 2399/- (60% discount)</h6>
+              <hr>
+              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Book Now</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+      <!-- Grid row -->
+    </div>
+  </div>
+</main>

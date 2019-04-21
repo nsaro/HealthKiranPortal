@@ -1,1 +1,126 @@
-/* You can add global styles to this file, and also import other style files */
+.view {
+  background: url("assets/bg.jpg")no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+}
+.logo img {
+  width: 250px;
+}
+.afterLogo {
+  padding-left: 30px;
+}
+i{
+  padding-right: 5px;
+}
+
+.roundCorners {
+  border-radius: 15px;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  box-shadow: 5px 5px rgba(0, 0, 0, .5);
+}
+.bigButton{
+  width:200px;
+}
+.bigSelect{
+  width:300px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.mat-input-element {
+  color: black;
+}
+.mat-field-full-width {
+  width: 100%;
+  color: #00acc1;
+}
+
+.mat-field-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .mat-field-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+.black{
+  color: black;
+}
+.imageLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+.iconContainer {
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+  padding-top: 50%;
+  background: #ef8913;
+}
+.majorContainer {
+  text-align: center;
+  padding: 50px 0;
+}
+.majorContainer .icon {
+  width: 18%;
+  display: inline-block;
+  padding: 18px;
+  margin: 0 9px;
+}
+.textInfo{
+  padding-top: 15px;
+}
+.imageIcon {
+  max-width: 100%;
+}
+.iconInfoBg{
+  background-color: #ececec;
+}
+.spacer{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #f9f4ef;
+}
+.spacing{
+  padding-left: 50px;
+  padding-top: 50px;
+}
+footer .social {
+  list-style: none;
+  padding: 0;
+}
+footer .social li {
+  display: inline-block;
+  padding-right: 20px;
+}
+.healthCheckUpImages{
+  width: 50%;
+}
+footer ul {
+  padding-left: 20px;
+  padding-top: 20px;
+  list-style: none;
+  text-align: left;
+}
+
+.search {
+  background-image: url(assets/bg_search.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 140px 0;
+  position: relative;
+}
+.mat-primary .mat-pseudo-checkbox-checked {
+  background: #00acc1;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #00acc1;
+}
