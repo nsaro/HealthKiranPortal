@@ -123,7 +123,7 @@ export class LabAddEditDialog implements OnInit {
 
         LabGenericService.instance.labTestTableData.forEach(labTest => {
             let price: Price = {id: (labTest.priceObjId) ? labTest.priceObjId : null, originalPrice: Number(labTest.price),
-                discountPercentage: Number(labTest.discountPercentage)};
+                discountPercentage: Number(labTest.discountPercentage), finalPrice: ( labTest.price - ((labTest.price * labTest.discountPercentage) / 100)) };
             let testID = (labTest.testObjId) ? labTest.testObjId : null;
             const test: Test = this.getTestById(testID);
             let labTestObj: LabTest = {id : (labTest.labTestId) ? labTest.labTestId : null, price: price, test: test};

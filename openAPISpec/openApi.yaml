@@ -346,3 +346,34 @@ paths:
                 $ref: 'models/models.yaml#/definitions/ArrayOfLab'
         404:
           description: Page not found
+
+  /labs/city/{cityId}/tests/{testIds}:
+    get:
+      tags:
+        - lab
+      description: Load labs
+      operationId: getAllLabsByCityAndTest
+      parameters:
+        - in: path
+          name: cityId
+          required: true
+          schema:
+            type: integer
+          description: cityId
+        - in: path
+          name: testIds
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+          description: testIds
+      responses:
+        200:
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/ArrayOfLab'
+        404:
+          description: Page not found

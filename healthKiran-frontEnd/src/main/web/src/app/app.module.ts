@@ -5,10 +5,10 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -19,6 +19,10 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ApiModule, Configuration} from '../generated/restClient';
 import {environment} from "../environments/environment";
 import {HttpClientModule} from '@angular/common/http';
+import { LabDetailsComponent } from './lab-details/lab-details.component';
+import { BookingDialogComponent } from './booking-dialog/booking-dialog.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -29,6 +33,8 @@ export function restClientConfigurationFactory() {
     LandingPageComponent,
     SearchPageComponent,
     PriceBreakUpDialogComponent,
+    LabDetailsComponent,
+    BookingDialogComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +43,6 @@ export function restClientConfigurationFactory() {
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
     ApiModule.forRoot(restClientConfigurationFactory),
-    AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
@@ -47,11 +52,14 @@ export function restClientConfigurationFactory() {
     MatSelectModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent],
-  entryComponents: [PriceBreakUpDialogComponent]
+  entryComponents: [PriceBreakUpDialogComponent, LabDetailsComponent, BookingDialogComponent]
 })
 export class AppModule { }

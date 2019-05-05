@@ -47,33 +47,46 @@
   <div class="majorContainer">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 cardSpacer" *ngFor="let item of items">
+        <div class="col-md-6 cardSpacer" *ngFor="let labToDisplay of labsToDisplay">
           <mdb-card>
-            <mdb-card-body>
-              <mdb-card-title>
-                <h5><i class="fa fa-flask"></i><a href="">Dr Lal Path Labs</a></h5>
-              </mdb-card-title>
-              <mdb-card-text>
-                <hr>
-                <div class="container">
-                  <div class="row">
-                      <div class="col-md-8 textLeft">
-                        <h7><i class="fa fa-map-marker" aria-hidden="true"></i> Home Collection</h7>
-                        <br>
-                        <h7><i class="fa fa-thumbs-up" aria-hidden="true"></i> Certified By: NABL,CAP</h7>
-                        <br>
-                        <a class="spanClick" (click)="openPriceBreakUpDialog()">Price Break Up</a>
-                      </div>
-                      <div class="col-md-4 textLeft">
-                        <h6><span style="padding-right: 10px"><del><i class="fa fa-inr" aria-hidden="true"></i>1130</del></span>
-                          <span class="payble"><i class="fa fa-inr" aria-hidden="true"></i>1130</span></h6>
-                        <h6>0% Discount</h6>
-                      </div>
-                  </div>
+
+            <div class="card-header ">
+              <h5><i class="fa fa-flask"></i><a class="spanClick"
+                                                (click)="openLabDetails(labToDisplay.lab.id)">{{labToDisplay.lab.name}}</a>
+              </h5>
+            </div>
+            <div class="container card-content">
+              <div class="row">
+                <div class="col-md-7 textLeft">
+                  <h7><i class="fa fa-map-marker" aria-hidden="true"></i> {{labToDisplay.lab.area}}</h7>
+                  <br>
+                  <h7><i class="fa fa-thumbs-up" aria-hidden="true"></i> Certified By: {{labToDisplay.lab.certifiedBy}}
+                  </h7>
+                  <br>
+                  <h7><i class="fa fa-address-card" aria-hidden="true"></i> Address: {{labToDisplay.lab.address}}
+                    | {{labToDisplay.lab.pinCode}}</h7>
+                  <br>
+                  <h7><i class="fa fa-address-book" aria-hidden="true"></i> Contact
+                    Person: {{labToDisplay.lab.contactPerson}} | {{labToDisplay.lab.phone}}</h7>
+                  <br>
+                  <h6><b><a style="color: #00acbf;" (click)="openLabDetails(labToDisplay.lab.id)"> More Details..</a></b></h6>
                 </div>
-              </mdb-card-text>
-              <a href="#" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Add To Cart</a>
-            </mdb-card-body>
+                <div class="col-md-5 textLeft">
+                  <h6><span style="padding-right: 10px"><del><i class="fa fa-inr"
+                                                                aria-hidden="true"></i>{{labToDisplay.priceSection.totalBeforePrice}}</del></span>
+                    <span><i class="fa fa-inr"
+                                            aria-hidden="true"></i>{{labToDisplay.priceSection.totalFinalPrice}}</span>
+                  </h6>
+                  <h6 style="color: green">{{labToDisplay.priceSection.totalDiscount}}% Discount</h6>
+                  <h6><b><a style="color: #00acbf;" (click)="openPriceBreakUpDialog(labToDisplay.lab.id)"> Price Break
+                    Up</a></b></h6>
+                  <br>
+                  <a (click)="openLabBookingDialog(labToDisplay.lab.id)" mdbBtn class="btn btn-info cyan darken-1" mdbWavesEffect>Add To Cart</a>
+                </div>
+
+              </div>
+            </div>
+
           </mdb-card>
         </div>
       </div>

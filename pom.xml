@@ -17,9 +17,9 @@
     </parent>
 
     <modules>
-        <module>healthKiran-server</module>
-        <module>healthKiran-web</module>
         <module>healthKiran-frontEnd</module>
+        <module>healthKiran-web</module>
+        <module>healthKiran-server</module>
     </modules>
     <dependencies>
         <dependency>

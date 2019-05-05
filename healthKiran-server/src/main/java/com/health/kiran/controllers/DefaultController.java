@@ -8,13 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class DefaultController {
-	
 	@GetMapping
 	public String home() {
 		System.out.println("Received");
 		return "forward:/index.html";
 	}
-
 }

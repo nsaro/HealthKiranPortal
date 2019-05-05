@@ -1,0 +1,38 @@
+.header {
+  padding: 10px;
+  color: white;
+  background-color: #00acc0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, .07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, .13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgb(17, 154, 171) 50%), linear-gradient(90deg, transparent 50%, rgb(7, 144, 160) 50%);
+  background-size: 255px, 1px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  background-color: #ebc09c;
+  color: #585858;
+  font-size: medium;
+}
+
+.max {
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+.payment {
+  float: right;
+  color: green;
+  padding-top: 10px;
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.mat-step-header .mat-step-icon-selected {
+  background-color: #23a0b0;
+  color: #fff;
+}
