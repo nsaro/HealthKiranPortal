@@ -36,9 +36,6 @@ public class Lab {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LabTest> labTests;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Booking> bookings;
-
     public Long getId() {
         return id;
     }
@@ -126,14 +123,6 @@ public class Lab {
 
     public void setLabTests(List<LabTest> labTests) {
         this.labTests = labTests;
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
     }
 
     public City getCity() {

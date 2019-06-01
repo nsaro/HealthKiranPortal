@@ -1,0 +1,133 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step>
+    <ng-template matStepLabel>Prices</ng-template>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <main>
+        <div class="majorContainer">
+          <div class="container">
+            <div class="row">
+              <div class="header"><i class="fa fa-flask"></i><b>{{labName}} ( {{labAddress}} )</b></div>
+            </div>
+            <div class="row max">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="Test Name">
+                  <th mat-header-cell *matHeaderCellDef> Test Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.testName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="MRP">
+                  <th mat-header-cell *matHeaderCellDef> MRP</th>
+                  <td mat-cell *matCellDef="let element"> {{element.mrp}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Discount %">
+                  <th mat-header-cell *matHeaderCellDef> Discount %</th>
+                  <td mat-cell *matCellDef="let element"> {{element.discount}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Payable">
+                  <th mat-header-cell *matHeaderCellDef> Payable</th>
+                  <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Special Req">
+                  <th mat-header-cell *matHeaderCellDef> Special Requirement</th>
+                  <td mat-cell *matCellDef="let element"> {{element.specialRequirement}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+            <div class="row payment">
+              <h6><span style="padding-right: 10px">Total Payment to be made : <i class="fa fa-inr"
+                                                                                  aria-hidden="true"></i>{{totalPayable}}
+                </span></h6>
+            </div>
+          </div>
+        </div>
+      </main>
+      <button style="float: right;" class="btn btn-info cyan darken-1" matStepperNext>Schedule Tests</button>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="customerInfoFormGroup">
+    <ng-template matStepLabel>Personal Information</ng-template>
+    <form [formGroup]="customerInfoFormGroup">
+      <label>Usual Working hours </label>
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 textLeft">
+              <mat-form-field>
+                <input matInput placeholder="Full Name" formControlName="name" required>
+              </mat-form-field>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Mobile" formControlName="mobile" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 textLeft">
+              <mat-form-field>
+                <input matInput [matDatepicker]="date" [min]="minDate" formControlName="date"
+                       placeholder="Choose a date" required>
+                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date disabled="false"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Time</mat-label>
+                <mat-select formControlName="time" required>
+                  <mat-option value=""></mat-option>
+                  <mat-option value="6:00 AM">6:00 AM</mat-option>
+                  <mat-option value="6:30 AM">6:30 AM</mat-option>
+                  <mat-option value="7:00 AM">7:00 AM</mat-option>
+                  <mat-option value="7:30 AM">7:30 AM</mat-option>
+                  <mat-option value="8:00 AM">8:00 AM</mat-option>
+                  <mat-option value="8:30 AM">8:30 AM</mat-option>
+                  <mat-option value="9:00 AM">9:00 AM</mat-option>
+                  <mat-option value="9:30 AM">9:30 AM</mat-option>
+                  <mat-option value="0:00 AM">10:00 AM</mat-option>
+                  <mat-option value="10:30 AM">10:30 AM</mat-option>
+                  <mat-option value="11:00 AM">11:00 AM</mat-option>
+                  <mat-option value="11:30 AM">11:30 AM</mat-option>
+                  <mat-option value="12:00 PM">12:00 PM</mat-option>
+                  <mat-option value="12:30 PM">12:30 PM</mat-option>
+                  <mat-option value="1:00 PM">1:00 PM</mat-option>
+                  <mat-option value="1:30 PM">1:30 PM</mat-option>
+                  <mat-option value="2:00 PM">2:00 PM</mat-option>
+                  <mat-option value="2:30 PM">2:30 PM</mat-option>
+                  <mat-option value="3:00 PM">3:00 PM</mat-option>
+                  <mat-option value="3:30 PM">3:30 PM</mat-option>
+                  <mat-option value="4:00 PM">4:00 PM</mat-option>
+                  <mat-option value="4:30 PM">4:30 PM</mat-option>
+                  <mat-option value="5:00 PM">5:00 PM</mat-option>
+                  <mat-option value="5:30 PM">5:30 PM</mat-option>
+                  <mat-option value="6:00 PM">6:00 PM</mat-option>
+                  <mat-option value="6:30 PM">6:30 PM</mat-option>
+                  <mat-option value="7:00 PM">7:00 PM</mat-option>
+                  <mat-option value="7:30 PM">7:30 PM</mat-option>
+                  <mat-option value="8:00 PM">8:00 PM</mat-option>
+                  <mat-option value="8:30 PM">8:30 PM</mat-option>
+                  <mat-option value="9:00 PM">9:00 PM</mat-option>
+                  <mat-option value="9:30 PM">9:30 PM</mat-option>
+                  <mat-option value="10:00 PM">10:00 PM</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 textLeft">
+              <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email" required>
+              </mat-form-field>
+            </div>
+          </div>
+          <br/>
+          <button class="btn btn-info cyan darken-1" matStepperPrevious type="button">Back</button>
+          &nbsp;&nbsp;<button class="btn btn-info cyan darken-1" matStepperNext type="button">Next</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Booked</ng-template>
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <h6><b>{{testListStr}}</b></h6>
+      <h7 class="orangeFont"><i class="fa fa-map-marker" aria-hidden="true"></i><i>{{labName}} | {{labAddress}}</i> </h7><br>
+      <h7 class="tealFont"><i class="fa fa-clock-o" aria-hidden="true"></i>{{fullDateStr}} {{time}}</h7>
+      <br><br>
+      <button class="btn btn-info cyan darken-1" (click)="onClickSubmit()" >Book</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

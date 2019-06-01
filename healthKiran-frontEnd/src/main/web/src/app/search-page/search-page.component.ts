@@ -4,8 +4,8 @@ import {PriceBreakUpDialogComponent, TableData} from "../price-break-up-dialog/p
 import {GenericService} from "../services/GenericService";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
-import {City, Lab, LabTest, Test} from "../../generated/restClient";
-import {ActivatedRoute} from "@angular/router";
+import {City, Lab, Test} from "../../generated/restClient";
+import {ActivatedRoute, Router} from "@angular/router";
 import 'rxjs/add/operator/map';
 import {LabDetailsComponent} from "../lab-details/lab-details.component";
 import {BookingDialogComponent} from "../booking-dialog/booking-dialog.component";
@@ -39,7 +39,7 @@ export class SearchPageComponent implements OnInit {
   selectedTestOptions: number[] = [];
   labsToDisplay: LabToDisplay[] = [];
 
-  constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute) {
+  constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute, private router: Router) {
     this.getAllCities();
     this.getAllTests();
     this.cityID = GenericService.instance.currentCityId;
@@ -49,6 +49,10 @@ export class SearchPageComponent implements OnInit {
       cityId: new FormControl(this.cityID, [Validators.required]),
       testIds: new FormControl(this.testIds, [Validators.required]),
     });
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
+
     this.activatedRoute.data.map(data => data.cres).subscribe((result) => {
       console.log(result);
       this.labs = result;
@@ -69,12 +73,16 @@ export class SearchPageComponent implements OnInit {
             }
           }
         });
-        this.tableDataMap.set(lab.id, tableDataList);
+        if(tableDataList.length > 0) {
+          this.tableDataMap.set(lab.id, tableDataList);
+        }
       });
     });
-    this.labs.forEach(lab => {
-      this.labsToDisplay.push({lab: lab, priceSection: this.getPriceSectionForALab(lab.id)});
-    });
+    if(this.tableDataMap.size > 0) {
+      this.labs.forEach(lab => {
+        this.labsToDisplay.push({lab: lab, priceSection: this.getPriceSectionForALab(lab.id)});
+      });
+    }
   }
 
   ngOnInit() {
@@ -113,25 +121,28 @@ export class SearchPageComponent implements OnInit {
 
   getPriceSectionForALab(labId: number) {
     let tableData: TableData[] = this.priceDataMap.get(labId);
+    let priceSection: PriceSection = null;
     let totalBeforePrice = 0;
     let totalDiscount;
     let totalFinalPrice = 0;
-    let testName;
-    let specialRequirement: string;
-    tableData.forEach(tableData => {
-      totalBeforePrice = totalBeforePrice + tableData.mrp;
-      totalFinalPrice =  totalFinalPrice + tableData.total;
-      testName = tableData.testName;
-      specialRequirement = tableData.specialRequirement;
-    });
-    totalDiscount = 100 - ((totalFinalPrice/totalBeforePrice) * 100);
-    totalDiscount = totalDiscount.toFixed(0);
-    let priceSection: PriceSection = {totalBeforePrice: totalBeforePrice,
-      totalDiscount: totalDiscount,
-      totalFinalPrice:totalFinalPrice,
-      testName: testName,
-      specialRequirement: specialRequirement
-    };
+    let testName = '';
+    let specialRequirement: string = '';
+    if(tableData) {
+      tableData.forEach(tableData => {
+        totalBeforePrice = totalBeforePrice + tableData.mrp;
+        totalFinalPrice =  totalFinalPrice + tableData.total;
+        testName = tableData.testName;
+        specialRequirement = tableData.specialRequirement;
+      });
+      totalDiscount = 100 - ((totalFinalPrice/totalBeforePrice) * 100);
+      totalDiscount = totalDiscount.toFixed(0);
+      priceSection = {totalBeforePrice: totalBeforePrice,
+        totalDiscount: totalDiscount,
+        totalFinalPrice:totalFinalPrice,
+        testName: testName,
+        specialRequirement: specialRequirement
+      };
+    }
     return priceSection;
   }
   openLabDetails(labId: number): void {
@@ -193,6 +204,7 @@ export class SearchPageComponent implements OnInit {
   onClickSubmit(data) {
     GenericService.instance.currentCityId = data.cityId;
     GenericService.instance.currentTestId = data.testIds;
+    this.router.navigate(['/search']);
   };
 
 }

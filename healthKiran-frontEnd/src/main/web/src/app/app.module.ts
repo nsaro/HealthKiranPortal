@@ -5,7 +5,6 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule, MatInputModule, MatNativeDateModule} from '@angular/material';
@@ -18,11 +17,17 @@ import { PriceBreakUpDialogComponent } from './price-break-up-dialog/price-break
 import {MatDialogModule} from '@angular/material/dialog';
 import {ApiModule, Configuration} from '../generated/restClient';
 import {environment} from "../environments/environment";
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LabDetailsComponent } from './lab-details/lab-details.component';
 import { BookingDialogComponent } from './booking-dialog/booking-dialog.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { LoaderComponent } from './loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderService } from './services/loader.service';
+import {LoaderInterceptor} from "./loader.interceptor";
+import { BookingConfirmationDialogComponent } from './booking-dialog/booking-confirmation-dialog/booking-confirmation-dialog.component';
+import { SearchResultComponent } from './search-page/search-result/search-result.component';
 
 export function restClientConfigurationFactory() {
   return new Configuration({basePath: environment.backendBaseUrl, apiKeys: {}});
@@ -35,6 +40,9 @@ export function restClientConfigurationFactory() {
     PriceBreakUpDialogComponent,
     LabDetailsComponent,
     BookingDialogComponent,
+    LoaderComponent,
+    BookingConfirmationDialogComponent,
+    SearchResultComponent
   ],
   imports: [
     HttpClientModule,
@@ -55,11 +63,13 @@ export function restClientConfigurationFactory() {
     MatTableModule,
     MatStepperModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, LoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }],
   bootstrap: [AppComponent],
-  entryComponents: [PriceBreakUpDialogComponent, LabDetailsComponent, BookingDialogComponent]
+  entryComponents: [PriceBreakUpDialogComponent, LabDetailsComponent, BookingDialogComponent, BookingConfirmationDialogComponent]
 })
 export class AppModule { }

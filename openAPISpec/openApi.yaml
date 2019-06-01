@@ -16,6 +16,8 @@ tags:
     description: Test Management
   - name: lab
     description: Lab Management
+  - name: email
+    description: Email Management
 
 paths:
   /addUser:
@@ -241,10 +243,6 @@ paths:
                 $ref: 'models/models.yaml#/definitions/ArrayOfTest'
         404:
           description: Page not found
-
-
-
-
   /addLab:
     post:
       tags:
@@ -375,5 +373,26 @@ paths:
             application/json:
               schema:
                 $ref: 'models/models.yaml#/definitions/ArrayOfLab'
+        404:
+          description: Page not found
+  /saveBooking:
+    post:
+      tags:
+        - booking information
+      description: Send booking information
+      operationId: saveBooking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: 'models/models.yaml#/definitions/BookingInformation'
+      responses:
+        200:
+          description: successfully created
+          content:
+            application/json:
+              schema:
+                $ref: 'models/models.yaml#/definitions/Booking'
         404:
           description: Page not found

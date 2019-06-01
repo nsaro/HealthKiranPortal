@@ -1,3 +1,7 @@
+.mat-horizontal-content-container {
+  overflow: hidden;
+  padding: 0 10px 10px 10px;
+}
 .header {
   padding: 10px;
   color: white;
@@ -10,7 +14,10 @@
 table {
   width: 100%;
 }
-
+mat-cell{
+  padding-left: 10px;
+  text-align: left;
+}
 th {
   background-color: #ebc09c;
   color: #585858;
@@ -32,7 +39,21 @@ th {
   text-align: left;
 }
 
-.mat-step-header .mat-step-icon-selected {
-  background-color: #23a0b0;
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #00acc0;
   color: #fff;
+}
+th.mat-header-cell:first-of-type {
+  padding-left: 10px;
+  text-align: left;
+}
+td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type{
+  padding-left: 10px;
+  text-align: left;
+}
+.orangeFont {
+  color: #e87a34;
+}
+.tealFont {
+  color: #00acbf;
 }

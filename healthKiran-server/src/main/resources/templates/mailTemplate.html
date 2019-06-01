@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            padding: 40px;
+        }
+        .logo a img {
+            width: 250px;
+        }
+
+        h2, h3, h4, h5, h6 {
+            font-weight: 300;
+        }
+
+        h2{
+            font-size: 2rem;
+        }
+        .tealFont {
+            color: #00acbf;
+        }
+    </style>
+</head>
+<body>
+
+<h2 class="tealFont">Thanks for booking with us!</h2>
+    <div style="float: left;">
+        Dear <span th:text="${customerName}"></span>, your Health Kiran booking id is HK000<span th:text="${bookingId}"></span>.
+        Please visit <b><span th:text="${labName}"></span> | <span th:text="${labAddress}"></span></b> and meet <span th:text="${labContactPerson}"></span> (<span th:text="${labContactNumber}"></span>)  at reception.
+        <br> You need to pay Rs <span th:text="${totalAmount}"></span>  at the lab for <span th:text="${testDetails}"></span><br>
+        Date : <span th:text="${testDate}"></span><br>
+        Time : <span th:text="${testTiming}"></span>
+    </div>
+    <div class="footer" style="float: left;padding-top: 20px">
+        <div class="logo">
+            <a href="www.healthkiran.com" target="_blank"><img src="http://healthkiran.us-east-2.elasticbeanstalk.com/assets/logo.png"></a></div>
+        <h5>Your local health partner <br> Free feel to call our customer care executive<br>
+        (+91 9971751591)</h5>
+    </div>
+</div>
+
+
+</body>
+</html>

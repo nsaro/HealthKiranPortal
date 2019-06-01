@@ -70,7 +70,6 @@ public class LabController {
 		List<Test> tests = new ArrayList<>();
 		City city = cityRepository.getOne(cityId);
 		for (long testId: testIds) {
-
 			tests.add(testRepository.getOne(testId));
 		}
 		Set<Lab> labs = labRepository.getAllLabsByCityAndTest(city ,tests);

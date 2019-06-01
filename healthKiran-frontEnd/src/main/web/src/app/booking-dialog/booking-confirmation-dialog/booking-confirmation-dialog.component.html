@@ -1,0 +1,15 @@
+<h2 class="tealFont">Thanks for booking with us!</h2>
+<div style="float: left; font-size: small">
+  Dear {{booking.name}}, Your booking id is HK000{{booking.id}}<br><br>
+  Please visit <b>{{booking.lab.name}} | {{booking.lab.address}}</b> and meet {{booking.lab.contactPerson}} ({{booking.lab.phone}}) at reception.<br>
+  Date : {{booking.date}}<br>
+  Time : {{booking.timing}}<br>
+  <br> Free feel to call our customer care executive (+91 9971751591)
+</div>
+<div class="footer" style="float: left;padding-top: 20px">
+  <div class="logo">
+    <img src="../../../assets/logo.png">
+  <br><br>
+  <button class="btn btn-info cyan darken-1" (click)="close()">Ok</button>
+</div>
+</div>

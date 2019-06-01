@@ -28,16 +28,16 @@ definitions:
       id:
         type: integer
         format: int32
+      lab:
+        $ref: '#/definitions/Lab'
       name:
-        type: string
-      address:
         type: string
       timing:
         type: string
       date:
         type: string
       mobileNumber:
-        type: number
+        type: string
       email:
         type: string
       bookingStatus:
@@ -121,7 +121,7 @@ definitions:
       contactPerson:
         type: string
       phone:
-        type: number
+        type: string
       certifiedBy:
         type: string
       vanFacility:
@@ -140,10 +140,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/LabTest'
-      bookings:
-        type: array
-        items:
-          $ref: '#/definitions/Booking'
 
   ArrayOfCities:
     type: array
@@ -167,3 +163,45 @@ definitions:
 
   DeleteResult:
     type: string
+
+  testPrice:
+    type: object
+    properties:
+      price:
+        type: number
+      name:
+        type: string
+
+  BookingInformation:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      labId:
+        type: integer
+        format: int32
+      labName:
+        type: string
+      labAddress:
+        type: string
+      labContactNumber:
+        type: string
+      labContactPerson:
+        type: string
+      customerEmail:
+        type: string
+      customerPhone:
+        type: string
+      customerName:
+        type: string
+      testTiming:
+        type: string
+      testDate:
+        type: string
+      totalAmount:
+        type: number
+      testPrices:
+        type: array
+        items:
+          $ref: '#/definitions/testPrice'

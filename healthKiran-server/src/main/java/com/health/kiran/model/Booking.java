@@ -15,12 +15,22 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private CollectionType collectionType;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "lab_id", referencedColumnName = "id")
+    private Lab lab;
     private String name;
-    private String address;
     private String timing;
     private String date;
-    private Integer mobileNumber;
+    private String mobileNumber;
     private String email;
+
+    public Lab getLab() {
+        return lab;
+    }
+
+    public void setLab(Lab lab) {
+        this.lab = lab;
+    }
 
     public Long getId() {
         return id;
@@ -30,20 +40,13 @@ public class Booking {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getTiming() {
@@ -62,11 +65,11 @@ public class Booking {
         this.date = date;
     }
 
-    public Integer getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(Integer mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
